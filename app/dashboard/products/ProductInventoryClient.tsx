@@ -60,9 +60,9 @@ export default function ProductInventoryClient({ products }: { products: Product
               </div>
               <div className="flex flex-wrap items-center gap-3 text-sm text-slate-700">
                 <span className="rounded-full bg-slate-100 px-3 py-1">Stock: {product.inventory}</span>
-                <span className="rounded-full bg-brand-100 px-3 py-1 text-brand-700">₦{product.price.toLocaleString()}</span>
+                <span className="rounded-full bg-white/10 px-3 py-1 text-accent-300">₦{Number(product.price ?? 0).toLocaleString()}</span>
                 <span className="rounded-full bg-slate-100 px-3 py-1">{product.category}</span>
-                <Link href={`/products/${product.slug}`} className="rounded-full bg-brand-600 px-3 py-1 text-white hover:bg-brand-700">
+                <Link href={`/products/${product.slug}`} className="rounded-full bg-accent-500 px-3 py-1 text-white hover:bg-accent-600">
                   View
                 </Link>
                 <Link href={`/dashboard/products/${product._id}/edit`} className="rounded-full bg-slate-200 px-3 py-1 hover:bg-slate-300">

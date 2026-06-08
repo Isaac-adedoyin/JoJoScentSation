@@ -129,7 +129,7 @@ export default function EditProductClient({ id }: { id: string }) {
           {imageUrl && <img src={imageUrl} alt="current" className="mt-2 h-24 w-24 object-cover" />}
         </div>
         <div>
-          <button disabled={saving} className="inline-flex items-center rounded bg-brand-600 px-4 py-2 text-white">
+          <button disabled={saving} className="inline-flex items-center rounded bg-accent-600 px-4 py-2 text-white">
             {saving ? 'Saving...' : 'Save changes'}
           </button>
         </div>

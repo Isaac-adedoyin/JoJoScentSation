@@ -19,7 +19,7 @@ export default function ProductActions({ product }: { product: Product }) {
             max={product.inventory}
             value={quantity}
             onChange={(event) => setQuantity(Number(event.target.value))}
-            className="mt-1 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-brand-500"
+            className="mt-1 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-accent-500"
           />
         </label>
         <button
@@ -34,7 +34,7 @@ export default function ProductActions({ product }: { product: Product }) {
               imageUrl: product.imageUrl
             })
           }
-          className="inline-flex w-full justify-center rounded-full bg-brand-600 px-6 py-4 text-sm font-semibold text-white transition hover:bg-brand-700 disabled:cursor-not-allowed disabled:bg-slate-300"
+          className="inline-flex w-full justify-center rounded-full bg-accent-500 px-6 py-4 text-sm font-semibold text-white transition hover:bg-accent-600 disabled:cursor-not-allowed disabled:bg-slate-300"
         >
           Add to cart
         </button>

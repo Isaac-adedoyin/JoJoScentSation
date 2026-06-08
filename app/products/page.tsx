@@ -13,7 +13,9 @@ async function getProducts(): Promise<Product[]> {
     .toArray();
   return products.map((product) => ({
     ...product,
-    _id: product._id.toString()
+    _id: product._id.toString(),
+    price: Number(product.price ?? 0),
+    inventory: Number(product.inventory ?? 0)
   } as Product));
 }
 
@@ -24,10 +26,10 @@ export default async function ProductsPage() {
     <div className="mx-auto max-w-7xl px-6 py-10">
       <header className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <div>
-          <p className="text-sm uppercase tracking-[0.3em] text-brand-700">Gift-ready fragrance</p>
-          <h1 className="mt-2 text-4xl font-semibold text-slate-900">Browse our perfume catalog</h1>
+          <p className="text-sm uppercase tracking-[0.3em] text-accent-300">Gift-ready fragrance</p>
+          <h1 className="mt-2 text-4xl font-semibold text-white">Browse our perfume catalog</h1>
         </div>
-        <p className="max-w-xl text-sm text-slate-600">
+        <p className="max-w-xl text-sm text-slate-300">
           Every scent is backed by product inventory management, easy checkout, and a clean admin dashboard.
         </p>
       </header>

@@ -39,21 +39,21 @@ export default async function DashboardPage() {
 
       <div className="grid gap-6 lg:grid-cols-3">
         <div className="rounded-3xl bg-white p-8 shadow-sm">
-          <p className="text-sm uppercase tracking-[0.3em] text-brand-700">Products</p>
+          <p className="text-sm uppercase tracking-[0.3em] text-accent-300">Products</p>
           <p className="mt-4 text-4xl font-semibold text-slate-900">{stats.products}</p>
-          <Link href="/dashboard/products" className="mt-6 inline-flex rounded-full bg-brand-600 px-5 py-3 text-sm font-semibold text-white hover:bg-brand-700">
+          <Link href="/dashboard/products" className="mt-6 inline-flex rounded-full bg-accent-500 px-5 py-3 text-sm font-semibold text-white hover:bg-accent-600">
             Manage catalog
           </Link>
         </div>
         <div className="rounded-3xl bg-white p-8 shadow-sm">
-          <p className="text-sm uppercase tracking-[0.3em] text-brand-700">Orders</p>
+          <p className="text-sm uppercase tracking-[0.3em] text-accent-300">Orders</p>
           <p className="mt-4 text-4xl font-semibold text-slate-900">{stats.orders}</p>
-          <Link href="/dashboard/orders" className="mt-6 inline-flex rounded-full bg-brand-600 px-5 py-3 text-sm font-semibold text-white hover:bg-brand-700">
+          <Link href="/dashboard/orders" className="mt-6 inline-flex rounded-full bg-accent-500 px-5 py-3 text-sm font-semibold text-white hover:bg-accent-600">
             View orders
           </Link>
         </div>
         <div className="rounded-3xl bg-white p-8 shadow-sm">
-          <p className="text-sm uppercase tracking-[0.3em] text-brand-700">Customers</p>
+          <p className="text-sm uppercase tracking-[0.3em] text-accent-300">Customers</p>
           <p className="mt-4 text-4xl font-semibold text-slate-900">{stats.users}</p>
           <p className="mt-4 text-sm text-slate-600">Role-based access for admins and managers.</p>
         </div>

@@ -84,7 +84,7 @@ export default function CheckoutClient() {
                 <input
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="mt-2 w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 focus:border-brand-500"
+                  className="mt-2 w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 focus:border-accent-500"
                 />
               </div>
               <div>
@@ -93,7 +93,7 @@ export default function CheckoutClient() {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="mt-2 w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 focus:border-brand-500"
+                  className="mt-2 w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 focus:border-accent-500"
                 />
               </div>
               <div>
@@ -101,7 +101,7 @@ export default function CheckoutClient() {
                 <textarea
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
-                  className="mt-2 w-full rounded-3xl border border-slate-200 bg-slate-50 px-4 py-3 focus:border-brand-500"
+                  className="mt-2 w-full rounded-3xl border border-slate-200 bg-slate-50 px-4 py-3 focus:border-accent-500"
                   rows={5}
                 />
               </div>
@@ -109,7 +109,7 @@ export default function CheckoutClient() {
                 type="button"
                 onClick={handlePaystack}
                 disabled={!items.length || !address || !email || !name}
-                className="inline-flex w-full justify-center rounded-full bg-brand-600 px-6 py-4 text-sm font-semibold text-white transition hover:bg-brand-700 disabled:cursor-not-allowed disabled:bg-slate-300"
+                className="inline-flex w-full justify-center rounded-full bg-accent-500 px-6 py-4 text-sm font-semibold text-white transition hover:bg-accent-600 disabled:cursor-not-allowed disabled:bg-slate-300"
               >
                 Pay ₦{subtotal.toLocaleString()} with Paystack
               </button>

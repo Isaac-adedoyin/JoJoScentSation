@@ -17,9 +17,9 @@ export default function ProductCard({ product }: { product: Product }) {
           <h3 className="text-xl font-semibold uppercase tracking-[0.08em] text-white">{product.name}</h3>
         </div>
         <div className="flex items-center justify-between gap-3">
-          <span className="text-lg font-semibold text-accent-300">₦{product.price.toLocaleString()}</span>
+          <span className="text-lg font-semibold text-accent-300">₦{Number(product.price ?? 0).toLocaleString()}</span>
           <span className="rounded-full bg-white/5 px-3 py-1 text-[11px] uppercase tracking-[0.35em] text-slate-400">
-            {product.inventory > 0 ? `${product.inventory} in stock` : 'Sold out'}
+            {(product.inventory ?? 0) > 0 ? `${product.inventory} in stock` : 'Sold out'}
           </span>
         </div>
         <Link

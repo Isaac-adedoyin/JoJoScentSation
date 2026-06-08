@@ -14,7 +14,7 @@ export default function GlobalError({ error, reset }: { error: Error; reset: () 
       <button
         type="button"
         onClick={() => reset()}
-        className="rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-brand-700"
+        className="rounded-full bg-accent-500 px-6 py-3 text-sm font-semibold text-white transition hover:bg-accent-600"
       >
         Reload page
       </button>

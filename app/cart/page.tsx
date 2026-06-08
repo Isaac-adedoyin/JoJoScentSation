@@ -11,7 +11,7 @@ export default function CartPage() {
       <div className="mx-auto max-w-4xl px-6 py-16 text-center">
         <h1 className="text-4xl font-semibold text-slate-900">Your cart is empty</h1>
         <p className="mt-4 text-slate-600">Add some fragrance to your collection before checkout.</p>
-        <Link href="/products" className="mt-8 inline-flex rounded-full bg-brand-600 px-6 py-3 text-white transition hover:bg-brand-700">
+        <Link href="/products" className="mt-8 inline-flex rounded-full bg-accent-500 px-6 py-3 text-white transition hover:bg-accent-600">
           Continue shopping
         </Link>
       </div>
@@ -62,10 +62,10 @@ export default function CartPage() {
         <aside className="rounded-3xl bg-white p-8 shadow-sm">
           <div className="space-y-5">
             <div>
-              <p className="text-sm uppercase tracking-[0.3em] text-brand-700">Order summary</p>
+              <p className="text-sm uppercase tracking-[0.3em] text-accent-300">Order summary</p>
               <p className="mt-3 text-3xl font-semibold text-slate-900">₦{subtotal.toLocaleString()}</p>
             </div>
-            <Link href="/checkout" className="block rounded-full bg-brand-600 px-6 py-4 text-center text-sm font-semibold text-white transition hover:bg-brand-700">
+            <Link href="/checkout" className="block rounded-full bg-accent-500 px-6 py-4 text-center text-sm font-semibold text-white transition hover:bg-accent-600">
               Checkout with Paystack
             </Link>
             <button

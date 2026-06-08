@@ -38,11 +38,11 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
         </div>
         <div className="space-y-6">
           <div className="rounded-3xl bg-white p-8 shadow-sm">
-            <p className="text-sm uppercase tracking-[0.3em] text-brand-700">{product.category}</p>
+            <p className="text-sm uppercase tracking-[0.3em] text-accent-300">{product.category}</p>
             <h1 className="mt-4 text-4xl font-semibold text-slate-900">{product.name}</h1>
             <p className="mt-5 text-lg leading-8 text-slate-600">{product.description}</p>
             <div className="mt-8 flex items-center gap-4">
-              <span className="text-3xl font-semibold text-brand-700">₦{product.price.toLocaleString()}</span>
+              <span className="text-3xl font-semibold text-accent-300">₦{Number(product.price ?? 0).toLocaleString()}</span>
               <span className="rounded-full bg-slate-100 px-3 py-1 text-sm text-slate-700">
                 {product.inventory > 0 ? `${product.inventory} in stock` : 'Out of stock'}
               </span>

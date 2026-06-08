@@ -48,7 +48,7 @@ export default function OrderManagementClient({ orders }: { orders: Order[] }) {
         <div key={order._id} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div>
-              <p className="text-sm uppercase tracking-[0.3em] text-brand-700">{order.status}</p>
+              <p className="text-sm uppercase tracking-[0.3em] text-accent-700">{order.status}</p>
               <h2 className="text-xl font-semibold text-slate-900">{order.customerName}</h2>
               <p className="mt-2 text-sm text-slate-600">{order.customerEmail} • {new Date(order.createdAt).toLocaleDateString()}</p>
             </div>
@@ -65,7 +65,7 @@ export default function OrderManagementClient({ orders }: { orders: Order[] }) {
             <select
               value={selectedStatuses[order._id]}
               onChange={(event) => handleStatusChange(order._id, event.target.value)}
-              className="rounded border border-slate-300 bg-white px-4 py-3 text-sm outline-none focus:border-brand-500"
+              className="rounded border border-slate-300 bg-white px-4 py-3 text-sm outline-none focus:border-accent-500"
             >
               <option value="pending">Pending</option>
               <option value="processing">Processing</option>
@@ -77,7 +77,7 @@ export default function OrderManagementClient({ orders }: { orders: Order[] }) {
               type="button"
               onClick={() => handleUpdate(order._id)}
               disabled={savingId === order._id}
-              className="inline-flex justify-center rounded-full bg-brand-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-brand-700 disabled:cursor-not-allowed disabled:bg-slate-300"
+              className="inline-flex justify-center rounded-full bg-accent-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-accent-700 disabled:cursor-not-allowed disabled:bg-slate-300"
             >
               {savingId === order._id ? 'Updating...' : 'Update status'}
             </button>

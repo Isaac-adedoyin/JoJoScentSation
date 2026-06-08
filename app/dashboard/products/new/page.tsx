@@ -94,7 +94,7 @@ export default function NewProductPage() {
           <input required type="file" accept="image/*" onChange={(e) => setFile(e.target.files?.[0] ?? null)} className="mt-1" />
         </div>
         <div>
-          <button disabled={loading} className="inline-flex items-center rounded bg-brand-600 px-4 py-2 text-white">
+          <button disabled={loading} className="inline-flex items-center rounded bg-accent-600 px-4 py-2 text-white">
             {loading ? 'Creating...' : 'Create product'}
           </button>
         </div>
