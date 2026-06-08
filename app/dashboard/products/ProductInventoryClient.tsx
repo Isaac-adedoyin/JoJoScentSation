@@ -49,7 +49,20 @@ export default function ProductInventoryClient({ products }: { products: Product
         onCancel={() => setDeleteProductId(null)}
         onConfirm={handleDelete}
       />
-
+      {products.length === 0 ? (
+        <div className="rounded-[1.75rem] border border-dashed border-[#DCC8A7] bg-[#FCFAF6] p-8 text-center shadow-[0_12px_32px_rgba(76,60,38,0.05)]">
+          <p className="text-lg font-semibold text-[#2D2D2D]">No products yet</p>
+          <p className="mt-3 text-sm leading-7 text-[#61584D]">
+            Add your first fragrance listing to start building the storefront catalog.
+          </p>
+          <Link
+            href="/dashboard/products/new"
+            className="mt-6 inline-flex rounded-full bg-[#D6B98C] px-6 py-3 text-sm font-semibold text-[#2D2D2D] transition hover:bg-[#CDAE80]"
+          >
+            Create product
+          </Link>
+        </div>
+      ) : (
       <div className="space-y-4">
         {products.map((product) => (
           <div key={product._id} className="rounded-[1.75rem] border border-[#ECE1D2] bg-white p-6 shadow-[0_14px_38px_rgba(76,60,38,0.07)]">
@@ -80,6 +93,7 @@ export default function ProductInventoryClient({ products }: { products: Product
           </div>
         ))}
       </div>
+      )}
     </>
   );
 }

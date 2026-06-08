@@ -28,20 +28,33 @@ export async function POST(request: Request) {
 
   const body = await request.json();
   const { name, slug, description, price, inventory, category, imageUrl, cloudinaryPublicId } = body;
-  if (!name || !slug || !description || !price || !inventory || !category || !imageUrl) {
+  const normalizedPrice = Number(price);
+  const normalizedInventory = Number(inventory);
+
+  if (
+    !String(name ?? '').trim() ||
+    !String(slug ?? '').trim() ||
+    !String(description ?? '').trim() ||
+    !String(category ?? '').trim() ||
+    !String(imageUrl ?? '').trim() ||
+    !Number.isFinite(normalizedPrice) ||
+    normalizedPrice < 0 ||
+    !Number.isFinite(normalizedInventory) ||
+    normalizedInventory < 0
+  ) {
     return NextResponse.json({ success: false, error: 'Missing product fields' }, { status: 400 });
   }
 
   const client = await getClient();
   const db = client.db();
   await db.collection('products').insertOne({
-    name,
-    slug,
-    description,
-    price,
-    inventory,
-    category,
-    imageUrl,
+    name: String(name).trim(),
+    slug: String(slug).trim(),
+    description: String(description).trim(),
+    price: normalizedPrice,
+    inventory: normalizedInventory,
+    category: String(category).trim(),
+    imageUrl: String(imageUrl).trim(),
     cloudinaryPublicId,
     featured: body.featured ?? false,
     createdAt: new Date()
