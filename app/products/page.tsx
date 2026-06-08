@@ -11,12 +11,14 @@ async function getProducts(): Promise<Product[]> {
     .find()
     .sort({ createdAt: -1 })
     .toArray();
-  return products.map((product) => ({
+  const normalizedProducts = products.map((product) => ({
     ...product,
     _id: product._id.toString(),
     price: Number(product.price ?? 0),
     inventory: Number(product.inventory ?? 0)
   } as Product));
+  console.log('Products:', normalizedProducts);
+  return normalizedProducts;
 }
 
 export default async function ProductsPage() {
@@ -35,9 +37,10 @@ export default async function ProductsPage() {
       </header>
 
       <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-        {products.map((product) => (
-          <ProductCard key={product._id} product={product} />
-        ))}
+        {products.map((product) => {
+          console.log('Rendering ProductCard with product:', product);
+          return <ProductCard key={product._id} product={product} />;
+        })}
       </div>
     </div>
   );
