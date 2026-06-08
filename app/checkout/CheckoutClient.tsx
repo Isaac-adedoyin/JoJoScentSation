@@ -72,36 +72,36 @@ export default function CheckoutClient() {
   return (
     <>
       <Script src="https://js.paystack.co/v1/inline.js" strategy="afterInteractive" />
-      <div className="mx-auto max-w-4xl px-6 py-10">
-        <h1 className="text-4xl font-semibold text-slate-900">Checkout</h1>
-        <p className="mt-3 text-slate-600">Secure payment and order placement through Paystack.</p>
+      <div className="mx-auto max-w-4xl px-6 py-8">
+        <h1 className="text-4xl font-semibold text-[#2D2D2D]">Checkout</h1>
+        <p className="mt-3 text-[#61584D]">Secure payment and order placement through Paystack.</p>
 
         <div className="mt-8 grid gap-8 lg:grid-cols-[0.9fr_0.5fr]">
-          <section className="rounded-3xl bg-white p-8 shadow-sm">
+          <section className="rounded-[2rem] border border-[#E8DDCB] bg-white p-8 shadow-[0_18px_45px_rgba(76,60,38,0.08)]">
             <div className="space-y-6">
               <div>
-                <label className="block text-sm font-semibold text-slate-700">Name</label>
+                <label className="block text-sm font-semibold text-[#2D2D2D]">Name</label>
                 <input
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="mt-2 w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 focus:border-accent-500"
+                  className="mt-2 w-full rounded-2xl border border-[#E3D3BA] bg-[#FFFCF8] px-4 py-3 focus:border-[#D6B98C]"
                 />
               </div>
               <div>
-                <label className="block text-sm font-semibold text-slate-700">Email</label>
+                <label className="block text-sm font-semibold text-[#2D2D2D]">Email</label>
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="mt-2 w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 focus:border-accent-500"
+                  className="mt-2 w-full rounded-2xl border border-[#E3D3BA] bg-[#FFFCF8] px-4 py-3 focus:border-[#D6B98C]"
                 />
               </div>
               <div>
-                <label className="block text-sm font-semibold text-slate-700">Shipping address</label>
+                <label className="block text-sm font-semibold text-[#2D2D2D]">Shipping address</label>
                 <textarea
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
-                  className="mt-2 w-full rounded-3xl border border-slate-200 bg-slate-50 px-4 py-3 focus:border-accent-500"
+                  className="mt-2 w-full rounded-3xl border border-[#E3D3BA] bg-[#FFFCF8] px-4 py-3 focus:border-[#D6B98C]"
                   rows={5}
                 />
               </div>
@@ -109,20 +109,20 @@ export default function CheckoutClient() {
                 type="button"
                 onClick={handlePaystack}
                 disabled={!items.length || !address || !email || !name}
-                className="inline-flex w-full justify-center rounded-full bg-accent-500 px-6 py-4 text-sm font-semibold text-white transition hover:bg-accent-600 disabled:cursor-not-allowed disabled:bg-slate-300"
+                className="inline-flex w-full justify-center rounded-full bg-[#D6B98C] px-6 py-4 text-sm font-semibold text-[#2D2D2D] transition hover:bg-[#CDAE80] disabled:cursor-not-allowed disabled:bg-[#E5DACA]"
               >
                 Pay ₦{subtotal.toLocaleString()} with Paystack
               </button>
-              {status && <p className="text-sm text-slate-600">{status}</p>}
+              {status && <p className="text-sm text-[#61584D]">{status}</p>}
             </div>
           </section>
 
-          <aside className="rounded-3xl bg-white p-8 shadow-sm">
+          <aside className="rounded-[2rem] border border-[#E8DDCB] bg-white p-8 shadow-[0_18px_45px_rgba(76,60,38,0.08)]">
             <div className="space-y-4">
-              <h2 className="text-xl font-semibold text-slate-900">Order summary</h2>
-              <p className="text-slate-600">Items: {items.length}</p>
-              <p className="text-slate-600">Subtotal: ₦{subtotal.toLocaleString()}</p>
-              <p className="text-slate-600">Delivery is calculated at checkout.</p>
+              <h2 className="text-xl font-semibold text-[#2D2D2D]">Order summary</h2>
+              <p className="text-[#61584D]">Items: {items.length}</p>
+              <p className="text-[#61584D]">Subtotal: ₦{subtotal.toLocaleString()}</p>
+              <p className="text-[#61584D]">Delivery is calculated at checkout.</p>
             </div>
           </aside>
         </div>

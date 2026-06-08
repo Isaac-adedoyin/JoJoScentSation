@@ -39,9 +39,9 @@ export default function ProductActions({ product }: { product: Product }) {
   }
 
   return (
-    <div className="rounded-3xl bg-white p-8 shadow-sm">
+    <div className="rounded-[2rem] border border-[#E8DDCB] bg-white p-8 shadow-[0_18px_45px_rgba(76,60,38,0.08)]">
       <div className="space-y-4">
-        <label className="flex flex-col gap-2 text-sm font-medium text-slate-700">
+        <label className="flex flex-col gap-2 text-sm font-medium text-[#2D2D2D]">
           Quantity
           <input
             type="number"
@@ -49,14 +49,14 @@ export default function ProductActions({ product }: { product: Product }) {
             max={product.inventory}
             value={quantity}
             onChange={(event) => setQuantity(Number(event.target.value))}
-            className="mt-1 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-accent-500"
+            className="mt-1 rounded-2xl border border-[#E3D3BA] bg-[#FFFCF8] px-4 py-3 outline-none transition focus:border-[#D6B98C]"
           />
         </label>
         <button
           type="button"
           disabled={product.inventory === 0 || isAdding}
           onClick={handleAddToCart}
-          className="inline-flex w-full justify-center rounded-full bg-accent-500 px-6 py-4 text-sm font-semibold text-white transition hover:bg-accent-600 disabled:cursor-not-allowed disabled:bg-slate-300"
+          className="inline-flex w-full justify-center rounded-full bg-[#D6B98C] px-6 py-4 text-sm font-semibold text-[#2D2D2D] transition hover:bg-[#CDAE80] disabled:cursor-not-allowed disabled:bg-[#E5DACA]"
         >
           {isAdding ? 'Adding to cart...' : 'Add to cart'}
         </button>

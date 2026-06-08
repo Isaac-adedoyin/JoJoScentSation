@@ -29,32 +29,32 @@ export default function LoginPage() {
 
   return (
     <div className="mx-auto max-w-lg px-6 py-16">
-      <div className="rounded-3xl bg-white p-10 shadow-sm">
-        <h1 className="text-3xl font-semibold text-slate-900">Log in to JoJoScentSation</h1>
-        <p className="mt-3 text-slate-600">Manage orders, inventory, or continue shopping with a customer account.</p>
+      <div className="rounded-[2rem] border border-[#E8DDCB] bg-white p-10 shadow-[0_18px_45px_rgba(76,60,38,0.08)]">
+        <h1 className="text-3xl font-semibold text-[#2D2D2D]">Log in to JoJoScentSation</h1>
+        <p className="mt-3 text-[#61584D]">Manage orders, inventory, or continue shopping with a customer account.</p>
         <form onSubmit={handleSubmit} className="mt-8 space-y-6">
           <div>
-            <label className="block text-sm font-semibold text-slate-700">Email</label>
+            <label className="block text-sm font-semibold text-[#2D2D2D]">Email</label>
             <input
               type="email"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="mt-2 w-full rounded-3xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none focus:border-accent-500"
+              className="mt-2 w-full rounded-3xl border border-[#E3D3BA] bg-[#FFFCF8] px-4 py-3 outline-none focus:border-[#D6B98C]"
             />
           </div>
           <div>
-            <label className="block text-sm font-semibold text-slate-700">Password</label>
+            <label className="block text-sm font-semibold text-[#2D2D2D]">Password</label>
             <input
               type="password"
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="mt-2 w-full rounded-3xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none focus:border-accent-500"
+              className="mt-2 w-full rounded-3xl border border-[#E3D3BA] bg-[#FFFCF8] px-4 py-3 outline-none focus:border-[#D6B98C]"
             />
           </div>
-          {error && <p className="text-sm text-red-600">{error}</p>}
-          <button type="submit" className="w-full rounded-full bg-accent-500 px-6 py-3 text-sm font-semibold text-white transition hover:bg-accent-600">
+          {error && <p className="text-sm text-[#8D544A]">{error}</p>}
+          <button type="submit" className="w-full rounded-full bg-[#D6B98C] px-6 py-3 text-sm font-semibold text-[#2D2D2D] transition hover:bg-[#CDAE80]">
             Login
           </button>
         </form>

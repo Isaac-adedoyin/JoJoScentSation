@@ -3,7 +3,7 @@ import type { Product } from '@/lib/types';
 
 export default function ProductCard({ product }: { product: Product }) {
   return (
-    <article className="group overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 shadow-[0_30px_90px_rgba(0,0,0,0.35)] backdrop-blur-xl transition duration-500 hover:-translate-y-1 hover:border-accent-400/40 hover:shadow-[0_40px_120px_rgba(168,85,247,0.18)]">
+    <article className="group overflow-hidden rounded-[2rem] border border-[#ECE1D2] bg-white shadow-[0_18px_45px_rgba(76,60,38,0.08)] transition duration-500 hover:-translate-y-1 hover:border-[#D6B98C] hover:shadow-[0_24px_60px_rgba(76,60,38,0.12)]">
       <Link href={`/products/${product.slug}`} className="block">
         <img
           src={product.imageUrl}
@@ -13,18 +13,18 @@ export default function ProductCard({ product }: { product: Product }) {
       </Link>
       <div className="space-y-4 p-6">
         <div className="space-y-2">
-          <p className="text-xs uppercase tracking-[0.35em] text-slate-300">{product.category}</p>
-          <h3 className="text-xl font-semibold uppercase tracking-[0.08em] text-white">{product.name}</h3>
+          <p className="text-xs uppercase tracking-[0.35em] text-[#8A7B67]">{product.category}</p>
+          <h3 className="text-xl font-semibold uppercase tracking-[0.08em] text-[#2D2D2D]">{product.name}</h3>
         </div>
         <div className="flex items-center justify-between gap-3">
-          <span className="text-lg font-semibold text-accent-300">₦{Number(product.price ?? 0).toLocaleString()}</span>
-          <span className="rounded-full bg-white/5 px-3 py-1 text-[11px] uppercase tracking-[0.35em] text-slate-400">
+          <span className="text-lg font-semibold text-[#9A7643]">₦{Number(product.price ?? 0).toLocaleString()}</span>
+          <span className="rounded-full border border-[#EFE5D8] bg-[#FCFAF6] px-3 py-1 text-[11px] uppercase tracking-[0.35em] text-[#8A7B67]">
             {(product.inventory ?? 0) > 0 ? `${product.inventory} in stock` : 'Sold out'}
           </span>
         </div>
         <Link
           href={`/products/${product.slug}`}
-          className="inline-flex w-full justify-center rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-slate-100 transition duration-300 hover:border-accent-400 hover:bg-white/10"
+          className="inline-flex w-full justify-center rounded-full border border-[#E3D3BA] bg-[#FBF8F2] px-4 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-[#2D2D2D] transition duration-300 hover:border-[#D6B98C] hover:bg-[#F4EBDD]"
         >
           View perfume
         </Link>

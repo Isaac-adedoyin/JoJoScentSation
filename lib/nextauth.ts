@@ -4,6 +4,7 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import { compare } from 'bcryptjs';
 import getClient from '@/lib/mongodb';
 import type { UserRole } from '@/lib/types';
+import { ensureDefaultAdminAccount, isDefaultAdminEmail } from '@/lib/default-admin';
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -16,6 +17,10 @@ export const authOptions: NextAuthOptions = {
       async authorize(credentials) {
         if (!credentials?.email || !credentials.password) {
           return null;
+        }
+
+        if (isDefaultAdminEmail(credentials.email)) {
+          await ensureDefaultAdminAccount();
         }
 
         const client = await getClient();

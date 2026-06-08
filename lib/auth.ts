@@ -9,7 +9,7 @@ export async function getSession() {
 
 export async function requireAdmin() {
   const session = await getServerSession(authOptions);
-  if (!session || (session.user?.role !== 'admin' && session.user?.role !== 'manager')) {
+  if (!session || session.user?.role !== 'admin') {
     return null;
   }
   return session;
