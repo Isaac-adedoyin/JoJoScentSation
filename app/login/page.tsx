@@ -2,7 +2,7 @@
 
 import type { FormEvent } from 'react';
 import { useState } from 'react';
-import { signIn } from 'next-auth/react';
+import { getSession, signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 
 export default function LoginPage() {
@@ -13,6 +13,7 @@ export default function LoginPage() {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setError('');
     const res = await signIn('credentials', {
       redirect: false,
       email,
@@ -24,7 +25,9 @@ export default function LoginPage() {
       return;
     }
 
-    router.push('/dashboard');
+    const session = await getSession();
+    router.push(session?.user?.role === 'admin' ? '/dashboard' : '/products');
+    router.refresh();
   };
 
   return (
