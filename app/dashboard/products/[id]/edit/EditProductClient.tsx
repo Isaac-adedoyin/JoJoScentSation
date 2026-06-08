@@ -90,51 +90,57 @@ export default function EditProductClient({ id }: { id: string }) {
     }
   };
 
-  if (loading) return <div className="p-6">Loading...</div>;
-  if (error) return <div className="p-6 text-red-600">{error}</div>;
+  if (loading) return <div className="bg-[#F8F5EF] p-6 text-[#61584D]">Loading...</div>;
+  if (error) return <div className="bg-[#F8F5EF] p-6 text-[#8D544A]">{error}</div>;
 
   return (
-    <div className="mx-auto max-w-4xl px-6 py-10">
-      <h1 className="text-2xl font-semibold">Edit Product</h1>
-      <form onSubmit={handleSave} className="mt-6 space-y-4">
+    <div className="bg-[#F8F5EF]">
+      <div className="mx-auto max-w-4xl px-6 py-8">
+        <div className="rounded-[2rem] border border-[#E8DDCB] bg-white px-7 py-8 shadow-[0_18px_45px_rgba(76,60,38,0.08)]">
+          <p className="text-xs uppercase tracking-[0.4em] text-[#D6B98C]">Dashboard</p>
+          <h1 className="mt-3 text-3xl font-semibold tracking-[-0.03em] text-[#2D2D2D]">Edit product</h1>
+          <p className="mt-3 text-sm leading-7 text-[#61584D]">Refine the listing details while keeping the boutique catalog tidy and consistent.</p>
+        </div>
+        <form onSubmit={handleSave} className="mt-6 space-y-4 rounded-[1.75rem] border border-[#ECE1D2] bg-white p-7 shadow-[0_14px_38px_rgba(76,60,38,0.07)]">
         <div>
-          <label className="block text-sm font-medium">Name</label>
-          <input required value={name} onChange={(e) => setName(e.target.value)} className="mt-1 w-full rounded-md border px-3 py-2" />
+          <label className="block text-sm font-medium text-[#2D2D2D]">Name</label>
+          <input required value={name} onChange={(e) => setName(e.target.value)} className="mt-2 w-full rounded-2xl border border-[#E3D3BA] bg-[#FFFCF8] px-4 py-3 text-[#2D2D2D] outline-none transition focus:border-[#D6B98C]" />
         </div>
         <div>
-          <label className="block text-sm font-medium">Slug</label>
-          <input required value={slug} onChange={(e) => setSlug(e.target.value)} className="mt-1 w-full rounded-md border px-3 py-2" />
+          <label className="block text-sm font-medium text-[#2D2D2D]">Slug</label>
+          <input required value={slug} onChange={(e) => setSlug(e.target.value)} className="mt-2 w-full rounded-2xl border border-[#E3D3BA] bg-[#FFFCF8] px-4 py-3 text-[#2D2D2D] outline-none transition focus:border-[#D6B98C]" />
         </div>
         <div>
-          <label className="block text-sm font-medium">Description</label>
-          <textarea required value={description} onChange={(e) => setDescription(e.target.value)} className="mt-1 w-full rounded-md border px-3 py-2" />
+          <label className="block text-sm font-medium text-[#2D2D2D]">Description</label>
+          <textarea required value={description} onChange={(e) => setDescription(e.target.value)} className="mt-2 min-h-32 w-full rounded-2xl border border-[#E3D3BA] bg-[#FFFCF8] px-4 py-3 text-[#2D2D2D] outline-none transition focus:border-[#D6B98C]" />
         </div>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid gap-4 md:grid-cols-2">
           <div>
-            <label className="block text-sm font-medium">Price</label>
-            <input required type="number" value={price} onChange={(e) => setPrice(Number(e.target.value))} className="mt-1 w-full rounded-md border px-3 py-2" />
+            <label className="block text-sm font-medium text-[#2D2D2D]">Price</label>
+            <input required type="number" value={price} onChange={(e) => setPrice(Number(e.target.value))} className="mt-2 w-full rounded-2xl border border-[#E3D3BA] bg-[#FFFCF8] px-4 py-3 text-[#2D2D2D] outline-none transition focus:border-[#D6B98C]" />
           </div>
           <div>
-            <label className="block text-sm font-medium">Inventory</label>
-            <input required type="number" value={inventory} onChange={(e) => setInventory(Number(e.target.value))} className="mt-1 w-full rounded-md border px-3 py-2" />
+            <label className="block text-sm font-medium text-[#2D2D2D]">Inventory</label>
+            <input required type="number" value={inventory} onChange={(e) => setInventory(Number(e.target.value))} className="mt-2 w-full rounded-2xl border border-[#E3D3BA] bg-[#FFFCF8] px-4 py-3 text-[#2D2D2D] outline-none transition focus:border-[#D6B98C]" />
           </div>
         </div>
         <div>
-          <label className="block text-sm font-medium">Category</label>
-          <input required value={category} onChange={(e) => setCategory(e.target.value)} className="mt-1 w-full rounded-md border px-3 py-2" />
+          <label className="block text-sm font-medium text-[#2D2D2D]">Category</label>
+          <input required value={category} onChange={(e) => setCategory(e.target.value)} className="mt-2 w-full rounded-2xl border border-[#E3D3BA] bg-[#FFFCF8] px-4 py-3 text-[#2D2D2D] outline-none transition focus:border-[#D6B98C]" />
         </div>
         <div>
-          <label className="block text-sm font-medium">Replace Image (optional)</label>
-          <input type="file" accept="image/*" onChange={(e) => setFile(e.target.files?.[0] ?? null)} className="mt-1" />
-          {imageUrl && <img src={imageUrl} alt="current" className="mt-2 h-24 w-24 object-cover" />}
+          <label className="block text-sm font-medium text-[#2D2D2D]">Replace Image (optional)</label>
+          <input type="file" accept="image/*" onChange={(e) => setFile(e.target.files?.[0] ?? null)} className="mt-2 block w-full text-sm text-[#61584D] file:mr-4 file:rounded-full file:border-0 file:bg-[#F4EBDD] file:px-4 file:py-2 file:font-semibold file:text-[#2D2D2D]" />
+          {imageUrl && <img src={imageUrl} alt="current" className="mt-3 h-24 w-24 rounded-2xl object-cover shadow-[0_8px_24px_rgba(76,60,38,0.12)]" />}
         </div>
         <div>
-          <button disabled={saving} className="inline-flex items-center rounded bg-accent-600 px-4 py-2 text-white">
+          <button disabled={saving} className="inline-flex items-center rounded-full bg-[#D6B98C] px-5 py-3 text-sm font-semibold text-[#2D2D2D] transition hover:bg-[#CDAE80] disabled:bg-[#E5DACA]">
             {saving ? 'Saving...' : 'Save changes'}
           </button>
         </div>
-        {error && <p className="text-sm text-red-600">{error}</p>}
+        {error && <p className="text-sm text-[#8D544A]">{error}</p>}
       </form>
+      </div>
     </div>
   );
 }

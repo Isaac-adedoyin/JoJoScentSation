@@ -1,9 +1,8 @@
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/nextauth';
 import getClient from '@/lib/mongodb';
 import type { Product } from '@/lib/types';
 import type { ObjectId } from 'mongodb';
 import ProductInventoryClient from './ProductInventoryClient';
+import { requireAdmin } from '@/lib/auth';
 
 async function getProducts(): Promise<Product[]> {
   const client = await getClient();
@@ -20,26 +19,31 @@ async function getProducts(): Promise<Product[]> {
 }
 
 export default async function DashboardProductsPage() {
-  const session = await getServerSession(authOptions);
+  const session = await requireAdmin();
   const products = await getProducts();
 
   if (!session) {
     return (
       <div className="mx-auto max-w-4xl px-6 py-20 text-center text-slate-700">
         <h1 className="text-3xl font-semibold">Access denied</h1>
-        <p className="mt-4">Please log in to manage inventory.</p>
+        <p className="mt-4">Only admin and manager accounts can manage product inventory.</p>
       </div>
     );
   }
 
   return (
-    <div className="mx-auto max-w-7xl px-6 py-10">
-      <div className="mb-10 rounded-3xl bg-white p-10 shadow-sm">
-        <h1 className="text-4xl font-semibold text-slate-900">Product inventory</h1>
-        <p className="mt-3 text-slate-600">Update stock and review current perfume inventory levels.</p>
-      </div>
+    <div className="bg-[#F8F5EF]">
+      <div className="mx-auto max-w-7xl px-6 py-8">
+        <div className="rounded-[2rem] border border-[#E8DDCB] bg-white px-7 py-8 shadow-[0_18px_45px_rgba(76,60,38,0.08)]">
+          <p className="text-xs uppercase tracking-[0.4em] text-[#D6B98C]">Dashboard</p>
+          <h1 className="mt-3 text-4xl font-semibold tracking-[-0.03em] text-[#2D2D2D]">Product inventory</h1>
+          <p className="mt-3 text-sm leading-7 text-[#61584D]">Update stock and review current perfume inventory levels with a lighter boutique-led presentation.</p>
+        </div>
 
-      <ProductInventoryClient products={products} />
+        <div className="mt-6">
+          <ProductInventoryClient products={products} />
+        </div>
+      </div>
     </div>
   );
 }

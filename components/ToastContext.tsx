@@ -19,28 +19,30 @@ const ToastContext = createContext<ToastContextValue | undefined>(undefined);
 function getVariantStyles(variant: ToastVariant) {
   switch (variant) {
     case 'success':
-      return 'border-green-200 bg-green-50 text-green-900';
+      return 'border-accent-400/40 bg-[#0c0716]/95 text-slate-100';
     case 'error':
-      return 'border-red-200 bg-red-50 text-red-900';
+      return 'border-rose-400/40 bg-[#16070c]/95 text-rose-100';
     default:
-      return 'border-slate-200 bg-slate-50 text-slate-900';
+      return 'border-white/10 bg-[#07070b]/95 text-slate-100';
   }
 }
 
 function ToastViewport({ toasts }: { toasts: Toast[] }) {
   return (
     <div
-      className="pointer-events-none fixed inset-x-0 bottom-0 z-50 flex flex-col items-center gap-3 px-4 pb-4 sm:items-end sm:px-6"
+      className="pointer-events-none fixed right-0 top-0 z-50 flex w-full flex-col items-end gap-3 px-4 pt-4 sm:max-w-md sm:px-6"
       aria-live="polite"
       aria-atomic="true"
     >
       {toasts.map((toast) => (
         <div
           key={toast.id}
-          className={`pointer-events-auto max-w-sm w-full rounded-3xl border px-4 py-3 shadow-lg ${getVariantStyles(toast.variant)}`}
+          className={`pointer-events-auto w-full rounded-[1.75rem] border px-5 py-4 shadow-[0_24px_80px_rgba(0,0,0,0.45)] backdrop-blur-xl ${getVariantStyles(toast.variant)}`}
         >
-          <p className="text-sm font-semibold">{toast.variant === 'success' ? 'Success' : toast.variant === 'error' ? 'Error' : 'Info'}</p>
-          <p className="mt-1 text-sm leading-6">{toast.message}</p>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.35em] text-slate-400">
+            {toast.variant === 'success' ? 'Added' : toast.variant === 'error' ? 'Error' : 'Notice'}
+          </p>
+          <p className="mt-2 text-sm leading-6">{toast.message}</p>
         </div>
       ))}
     </div>
@@ -56,7 +58,7 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
       setToasts((current) => [...current, { id, ...toast }]);
       window.setTimeout(() => {
         setToasts((current) => current.filter((item) => item.id !== id));
-      }, 4500);
+      }, 3000);
     },
     []
   );

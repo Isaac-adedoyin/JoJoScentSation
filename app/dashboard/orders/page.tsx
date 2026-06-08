@@ -1,9 +1,8 @@
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/nextauth';
 import getClient from '@/lib/mongodb';
 import type { Order } from '@/lib/types';
 import type { ObjectId } from 'mongodb';
 import OrderManagementClient from './OrderManagementClient';
+import { requireAdmin } from '@/lib/auth';
 
 async function getOrders(): Promise<Order[]> {
   const client = await getClient();
@@ -20,26 +19,31 @@ async function getOrders(): Promise<Order[]> {
 }
 
 export default async function DashboardOrdersPage() {
-  const session = await getServerSession(authOptions);
+  const session = await requireAdmin();
   const orders = await getOrders();
 
   if (!session) {
     return (
       <div className="mx-auto max-w-4xl px-6 py-20 text-center text-slate-700">
         <h1 className="text-3xl font-semibold">Access denied</h1>
-        <p className="mt-4">Please log in to manage orders.</p>
+        <p className="mt-4">Only admin and manager accounts can manage all orders.</p>
       </div>
     );
   }
 
   return (
-    <div className="mx-auto max-w-7xl px-6 py-10">
-      <div className="mb-10 rounded-3xl bg-white p-10 shadow-sm">
-        <h1 className="text-4xl font-semibold text-slate-900">Orders</h1>
-        <p className="mt-3 text-slate-600">Review customer purchases and order status.</p>
-      </div>
+    <div className="bg-[#F8F5EF]">
+      <div className="mx-auto max-w-7xl px-6 py-8">
+        <div className="rounded-[2rem] border border-[#E8DDCB] bg-white px-7 py-8 shadow-[0_18px_45px_rgba(76,60,38,0.08)]">
+          <p className="text-xs uppercase tracking-[0.4em] text-[#D6B98C]">Dashboard</p>
+          <h1 className="mt-3 text-4xl font-semibold tracking-[-0.03em] text-[#2D2D2D]">Orders</h1>
+          <p className="mt-3 text-sm leading-7 text-[#61584D]">Review customer purchases and update delivery status in a softer premium workspace.</p>
+        </div>
 
-      <OrderManagementClient orders={orders} />
+        <div className="mt-6">
+          <OrderManagementClient orders={orders} />
+        </div>
+      </div>
     </div>
   );
 }

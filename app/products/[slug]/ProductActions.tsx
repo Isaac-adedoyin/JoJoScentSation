@@ -2,11 +2,41 @@
 
 import { useState } from 'react';
 import { useCart } from '@/components/CartProvider';
+import { useToast } from '@/components/ToastContext';
 import type { Product } from '@/lib/types';
 
 export default function ProductActions({ product }: { product: Product }) {
   const { addItem } = useCart();
+  const { notify } = useToast();
   const [quantity, setQuantity] = useState(1);
+  const [isAdding, setIsAdding] = useState(false);
+
+  async function handleAddToCart() {
+    if (product.inventory === 0 || isAdding) {
+      return;
+    }
+
+    setIsAdding(true);
+
+    try {
+      addItem({
+        productId: product._id,
+        name: product.name,
+        price: product.price,
+        quantity,
+        imageUrl: product.imageUrl
+      });
+
+      notify({
+        variant: 'success',
+        message: product.name ? `${product.name} added to cart` : 'Item added successfully'
+      });
+    } finally {
+      window.setTimeout(() => {
+        setIsAdding(false);
+      }, 250);
+    }
+  }
 
   return (
     <div className="rounded-3xl bg-white p-8 shadow-sm">
@@ -24,19 +54,11 @@ export default function ProductActions({ product }: { product: Product }) {
         </label>
         <button
           type="button"
-          disabled={product.inventory === 0}
-          onClick={() =>
-            addItem({
-              productId: product._id,
-              name: product.name,
-              price: product.price,
-              quantity,
-              imageUrl: product.imageUrl
-            })
-          }
+          disabled={product.inventory === 0 || isAdding}
+          onClick={handleAddToCart}
           className="inline-flex w-full justify-center rounded-full bg-accent-500 px-6 py-4 text-sm font-semibold text-white transition hover:bg-accent-600 disabled:cursor-not-allowed disabled:bg-slate-300"
         >
-          Add to cart
+          {isAdding ? 'Adding to cart...' : 'Add to cart'}
         </button>
       </div>
     </div>

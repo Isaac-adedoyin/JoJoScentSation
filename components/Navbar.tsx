@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/nextauth';
+import UserNav from '@/components/UserNav';
+import CartNavButton from '@/components/CartNavButton';
 
 export default async function Navbar() {
   const session = await getServerSession(authOptions);
@@ -26,18 +28,9 @@ export default async function Navbar() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <Link href="/cart" className="hidden rounded-full border border-white/10 bg-white/5 px-4 py-2 uppercase tracking-[0.25em] text-slate-100 transition hover:border-accent-300 hover:text-accent-300 md:inline-flex">
-            Cart
-          </Link>
+          <CartNavButton />
           {session ? (
-            <>
-              <span className="hidden rounded-full bg-white/5 px-4 py-2 text-[11px] uppercase tracking-[0.35em] text-slate-100 md:inline-flex">
-                {session.user?.name ?? session.user?.email}
-              </span>
-              <Link href="/dashboard" className="rounded-full bg-accent-500 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.35em] text-white transition hover:bg-accent-400">
-                Dashboard
-              </Link>
-            </>
+            <UserNav name={session.user?.name} email={session.user?.email} role={session.user?.role} />
           ) : (
             <>
               <Link href="/login" className="hidden transition hover:text-accent-300 md:inline-flex">Login</Link>

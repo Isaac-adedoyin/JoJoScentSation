@@ -52,25 +52,25 @@ export default function ProductInventoryClient({ products }: { products: Product
 
       <div className="space-y-4">
         {products.map((product) => (
-          <div key={product._id} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div key={product._id} className="rounded-[1.75rem] border border-[#ECE1D2] bg-white p-6 shadow-[0_14px_38px_rgba(76,60,38,0.07)]">
             <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
               <div>
-                <h2 className="text-xl font-semibold text-slate-900">{product.name}</h2>
-                <p className="mt-2 text-sm text-slate-600">{product.description}</p>
+                <h2 className="text-xl font-semibold text-[#2D2D2D]">{product.name}</h2>
+                <p className="mt-2 text-sm leading-6 text-[#61584D]">{product.description}</p>
               </div>
-              <div className="flex flex-wrap items-center gap-3 text-sm text-slate-700">
-                <span className="rounded-full bg-slate-100 px-3 py-1">Stock: {product.inventory}</span>
-                <span className="rounded-full bg-white/10 px-3 py-1 text-accent-300">₦{Number(product.price ?? 0).toLocaleString()}</span>
-                <span className="rounded-full bg-slate-100 px-3 py-1">{product.category}</span>
-                <Link href={`/products/${product.slug}`} className="rounded-full bg-accent-500 px-3 py-1 text-white hover:bg-accent-600">
+              <div className="flex flex-wrap items-center gap-3 text-sm text-[#554E45]">
+                <span className="rounded-full border border-[#EFE5D8] bg-[#FCFAF6] px-3 py-1.5">Stock: {product.inventory}</span>
+                <span className="rounded-full border border-[#E3D3BA] bg-[#F8F1E6] px-3 py-1.5 text-[#9A7643]">₦{Number(product.price ?? 0).toLocaleString()}</span>
+                <span className="rounded-full border border-[#EFE5D8] bg-[#FCFAF6] px-3 py-1.5">{product.category}</span>
+                <Link href={`/products/${product.slug}`} className="rounded-full bg-[#D6B98C] px-4 py-2 text-[#2D2D2D] transition hover:bg-[#CDAE80]">
                   View
                 </Link>
-                <Link href={`/dashboard/products/${product._id}/edit`} className="rounded-full bg-slate-200 px-3 py-1 hover:bg-slate-300">
+                <Link href={`/dashboard/products/${product._id}/edit`} className="rounded-full border border-[#E3D3BA] bg-[#FBF8F2] px-4 py-2 transition hover:bg-[#F4EBDD]">
                   Edit
                 </Link>
                 <button
                   onClick={() => setDeleteProductId(product._id)}
-                  className="rounded-full bg-red-600 px-3 py-1 text-white hover:bg-red-700"
+                  className="rounded-full bg-[#8D544A] px-4 py-2 text-white transition hover:bg-[#77433A]"
                   type="button"
                 >
                   Delete

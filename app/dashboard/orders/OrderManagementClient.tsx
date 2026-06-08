@@ -45,27 +45,27 @@ export default function OrderManagementClient({ orders }: { orders: Order[] }) {
   return (
     <div className="space-y-6">
       {orders.map((order) => (
-        <div key={order._id} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+        <div key={order._id} className="rounded-[1.75rem] border border-[#ECE1D2] bg-white p-6 shadow-[0_14px_38px_rgba(76,60,38,0.07)]">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div>
-              <p className="text-sm uppercase tracking-[0.3em] text-accent-700">{order.status}</p>
-              <h2 className="text-xl font-semibold text-slate-900">{order.customerName}</h2>
-              <p className="mt-2 text-sm text-slate-600">{order.customerEmail} • {new Date(order.createdAt).toLocaleDateString()}</p>
+              <p className="text-xs uppercase tracking-[0.35em] text-[#B99867]">{order.status}</p>
+              <h2 className="text-xl font-semibold text-[#2D2D2D]">{order.customerName}</h2>
+              <p className="mt-2 text-sm text-[#61584D]">{order.customerEmail} • {new Date(order.createdAt).toLocaleDateString()}</p>
             </div>
             <div className="space-y-2 text-right">
-              <p className="text-sm text-slate-500">Paid: {order.paid ? 'Yes' : 'No'}</p>
-              <p className="text-lg font-semibold text-slate-900">₦{order.total.toLocaleString()}</p>
+              <p className="text-sm text-[#7A6F61]">Paid: {order.paid ? 'Yes' : 'No'}</p>
+              <p className="text-lg font-semibold text-[#2D2D2D]">₦{order.total.toLocaleString()}</p>
             </div>
           </div>
-          <div className="mt-4 grid gap-3 rounded-3xl bg-slate-50 p-4">
-            <p className="text-sm text-slate-600">Shipping address</p>
-            <p className="text-sm text-slate-700">{order.shippingAddress}</p>
+          <div className="mt-4 grid gap-3 rounded-[1.5rem] border border-[#EFE5D8] bg-[#FCFAF6] p-4">
+            <p className="text-xs uppercase tracking-[0.32em] text-[#9A8A76]">Shipping address</p>
+            <p className="text-sm leading-6 text-[#554E45]">{order.shippingAddress}</p>
           </div>
           <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end">
             <select
               value={selectedStatuses[order._id]}
               onChange={(event) => handleStatusChange(order._id, event.target.value)}
-              className="rounded border border-slate-300 bg-white px-4 py-3 text-sm outline-none focus:border-accent-500"
+              className="rounded-full border border-[#E3D3BA] bg-[#FFFCF8] px-4 py-3 text-sm text-[#2D2D2D] outline-none transition focus:border-[#D6B98C]"
             >
               <option value="pending">Pending</option>
               <option value="processing">Processing</option>
@@ -77,7 +77,7 @@ export default function OrderManagementClient({ orders }: { orders: Order[] }) {
               type="button"
               onClick={() => handleUpdate(order._id)}
               disabled={savingId === order._id}
-              className="inline-flex justify-center rounded-full bg-accent-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-accent-700 disabled:cursor-not-allowed disabled:bg-slate-300"
+              className="inline-flex justify-center rounded-full bg-[#D6B98C] px-5 py-3 text-sm font-semibold text-[#2D2D2D] transition hover:bg-[#CDAE80] disabled:cursor-not-allowed disabled:bg-[#E5DACA] disabled:text-[#7E715E]"
             >
               {savingId === order._id ? 'Updating...' : 'Update status'}
             </button>
