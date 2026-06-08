@@ -1,9 +1,11 @@
+import BrandLogo from '@/components/BrandLogo';
+
 export default function Footer() {
   return (
     <footer id="contact" className="border-t border-[#E8DDCB] bg-[#FBF8F2] px-6 py-14 text-sm text-[#61584D]">
       <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.5fr_1fr_1fr]">
         <div className="space-y-4">
-          <p className="text-xl font-semibold uppercase tracking-[0.32em] text-[#2D2D2D]">JOJOSCENTSATION</p>
+          <BrandLogo mode="full" className="w-fit" />
           <p className="max-w-md leading-7 text-[#61584D]">
             A refined perfume boutique blending elevated scent stories with warm, polished retail experiences.
           </p>
