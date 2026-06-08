@@ -19,6 +19,21 @@ export async function POST(request: Request) {
       return NextResponse.json({ success: false, error: 'Cloudinary not configured' }, { status: 500 });
     }
 
+    cloudinary.config({
+      cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+      api_key: process.env.CLOUDINARY_API_KEY,
+      api_secret: process.env.CLOUDINARY_API_SECRET,
+    });
+
+    console.log('Cloudinary upload starting');
+    console.log({
+      cloudName: process.env.CLOUDINARY_CLOUD_NAME,
+      hasApiKey: !!process.env.CLOUDINARY_API_KEY,
+      hasApiSecret: !!process.env.CLOUDINARY_API_SECRET,
+      mime,
+      size: buffer.length
+    });
+
     const uploadResult = await cloudinary.uploader.upload(dataUri, {
       folder: 'jojoscentSation/products',
       use_filename: true,
@@ -27,7 +42,17 @@ export async function POST(request: Request) {
     });
 
     return NextResponse.json({ success: true, url: uploadResult.secure_url, publicId: uploadResult.public_id });
-  } catch (err: any) {
-    return NextResponse.json({ success: false, error: err.message || 'Upload failed' }, { status: 500 });
+  } catch (error: any) {
+    console.error('Cloudinary upload error FULL:', error);
+    console.error('Message:', error?.message);
+    console.error('Stack:', error?.stack);
+
+    return NextResponse.json(
+      {
+        success: false,
+        error: error?.message || 'Upload failed'
+      },
+      { status: 500 }
+    );
   }
 }
