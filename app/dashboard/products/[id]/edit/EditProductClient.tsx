@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useToast } from '@/components/ToastContext';
+import AdminImagePicker from '@/components/AdminImagePicker';
 
 export default function EditProductClient({ id }: { id: string }) {
   const router = useRouter();
@@ -129,9 +130,13 @@ export default function EditProductClient({ id }: { id: string }) {
           <input required value={category} onChange={(e) => setCategory(e.target.value)} className="mt-2 w-full rounded-2xl border border-[#E3D3BA] bg-[#FFFCF8] px-4 py-3 text-[#2D2D2D] outline-none transition focus:border-[#D6B98C]" />
         </div>
         <div>
-          <label className="block text-sm font-medium text-[#2D2D2D]">Replace Image (optional)</label>
-          <input type="file" accept="image/*" onChange={(e) => setFile(e.target.files?.[0] ?? null)} className="mt-2 block w-full text-sm text-[#61584D] file:mr-4 file:rounded-full file:border-0 file:bg-[#F4EBDD] file:px-4 file:py-2 file:font-semibold file:text-[#2D2D2D]" />
-          {imageUrl && <img src={imageUrl} alt="current" className="mt-3 h-24 w-24 rounded-2xl object-cover shadow-[0_8px_24px_rgba(76,60,38,0.12)]" />}
+          <AdminImagePicker
+            currentImageUrl={imageUrl}
+            file={file}
+            onFileChange={setFile}
+            label="Replace Image (optional)"
+            helperText="Upload a replacement image only when you want to refresh the storefront visual for this perfume."
+          />
         </div>
         <div>
           <button disabled={saving} className="inline-flex items-center rounded-full bg-[#D6B98C] px-5 py-3 text-sm font-semibold text-[#2D2D2D] transition hover:bg-[#CDAE80] disabled:bg-[#E5DACA]">

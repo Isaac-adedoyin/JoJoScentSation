@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useToast } from '@/components/ToastContext';
+import AdminImagePicker from '@/components/AdminImagePicker';
 
 export default function NewProductClient() {
   const router = useRouter();
@@ -94,10 +95,15 @@ export default function NewProductClient() {
             <label className="block text-sm font-medium text-[#2D2D2D]">Category</label>
             <input required value={category} onChange={(e) => setCategory(e.target.value)} className="mt-2 w-full rounded-2xl border border-[#E3D3BA] bg-[#FFFCF8] px-4 py-3 text-[#2D2D2D] outline-none transition focus:border-[#D6B98C]" />
           </div>
-          <div>
-            <label className="block text-sm font-medium text-[#2D2D2D]">Image</label>
-            <input required type="file" accept="image/*" onChange={(e) => setFile(e.target.files?.[0] ?? null)} className="mt-2 block w-full text-sm text-[#61584D] file:mr-4 file:rounded-full file:border-0 file:bg-[#F4EBDD] file:px-4 file:py-2 file:font-semibold file:text-[#2D2D2D]" />
-          </div>
+        <div>
+          <AdminImagePicker
+            required
+            file={file}
+            onFileChange={setFile}
+            label="Image"
+            helperText="Upload a product image before creating the listing. Square or portrait images work best in the storefront grid."
+          />
+        </div>
           <div>
             <button disabled={loading} className="inline-flex items-center rounded-full bg-[#D6B98C] px-5 py-3 text-sm font-semibold text-[#2D2D2D] transition hover:bg-[#CDAE80] disabled:bg-[#E5DACA]">
               {loading ? 'Creating...' : 'Create product'}

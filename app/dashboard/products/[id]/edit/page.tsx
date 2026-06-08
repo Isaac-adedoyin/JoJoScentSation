@@ -1,4 +1,5 @@
 import { requireAdmin } from '@/lib/auth';
+import { redirect } from 'next/navigation';
 import EditProductClient from './EditProductClient';
 
 export default async function Page(props: any) {
@@ -6,12 +7,7 @@ export default async function Page(props: any) {
   const id = props?.params?.id;
 
   if (!session) {
-    return (
-      <div className="mx-auto max-w-4xl px-6 py-20 text-center text-slate-700">
-        <h1 className="text-3xl font-semibold">Access denied</h1>
-        <p className="mt-4">Only admin accounts can edit products.</p>
-      </div>
-    );
+    redirect('/products');
   }
 
   return <EditProductClient id={id} />;

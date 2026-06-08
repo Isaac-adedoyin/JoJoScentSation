@@ -19,17 +19,22 @@ export default function ProductActions({ product }: { product: Product }) {
     setIsAdding(true);
 
     try {
+      const safeQuantity = Math.max(1, Math.min(quantity, product.inventory || 1));
+
       addItem({
         productId: product._id,
         name: product.name,
         price: product.price,
-        quantity,
+        quantity: safeQuantity,
         imageUrl: product.imageUrl
       });
 
       notify({
         variant: 'success',
-        message: product.name ? `${product.name} added to cart` : 'Item added successfully'
+        message:
+          product.name
+            ? `${product.name} added to cart`
+            : 'Item added successfully'
       });
     } finally {
       window.setTimeout(() => {
@@ -48,7 +53,7 @@ export default function ProductActions({ product }: { product: Product }) {
             min={1}
             max={product.inventory}
             value={quantity}
-            onChange={(event) => setQuantity(Number(event.target.value))}
+            onChange={(event) => setQuantity(Math.max(1, Number(event.target.value) || 1))}
             className="mt-1 rounded-2xl border border-[#E3D3BA] bg-[#FFFCF8] px-4 py-3 outline-none transition focus:border-[#D6B98C]"
           />
         </label>

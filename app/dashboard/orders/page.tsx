@@ -3,6 +3,7 @@ import type { Order } from '@/lib/types';
 import type { ObjectId } from 'mongodb';
 import OrderManagementClient from './OrderManagementClient';
 import { requireAdmin } from '@/lib/auth';
+import { redirect } from 'next/navigation';
 
 async function getOrders(): Promise<Order[]> {
   const client = await getClient();
@@ -20,16 +21,12 @@ async function getOrders(): Promise<Order[]> {
 
 export default async function DashboardOrdersPage() {
   const session = await requireAdmin();
-  const orders = await getOrders();
 
   if (!session) {
-    return (
-      <div className="mx-auto max-w-4xl px-6 py-20 text-center text-slate-700">
-        <h1 className="text-3xl font-semibold">Access denied</h1>
-        <p className="mt-4">Only admin accounts can manage all orders.</p>
-      </div>
-    );
+    redirect('/products');
   }
+
+  const orders = await getOrders();
 
   return (
     <div className="bg-[#F8F5EF]">

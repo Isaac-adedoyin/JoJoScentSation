@@ -5,6 +5,13 @@ import { authOptions } from '@/lib/nextauth';
 import getClient from '@/lib/mongodb';
 import type { Order } from '@/lib/types';
 
+const statusSteps = ['pending', 'processing', 'shipped', 'delivered'] as const;
+
+function getStatusIndex(status: Order['status']) {
+  if (status === 'cancelled') return -1;
+  return statusSteps.indexOf(status as (typeof statusSteps)[number]);
+}
+
 async function getOrdersForEmail(email: string): Promise<Order[]> {
   const client = await getClient();
   const db = client.db();
@@ -18,14 +25,14 @@ async function getOrdersForEmail(email: string): Promise<Order[]> {
     const createdAtValue = order.createdAt as Date | string;
 
     return {
-    ...order,
-    _id: order._id.toString(),
-    userId: order.userId ?? '',
-    createdAt:
-      createdAtValue instanceof Date
-        ? createdAtValue.toISOString()
-        : new Date(createdAtValue).toISOString()
-  };
+      ...order,
+      _id: order._id.toString(),
+      userId: order.userId ?? '',
+      createdAt:
+        createdAtValue instanceof Date
+          ? createdAtValue.toISOString()
+          : new Date(createdAtValue).toISOString()
+    };
   });
 }
 
@@ -74,6 +81,41 @@ export default async function OrdersPage() {
                   <p className="text-xs uppercase tracking-[0.35em] text-[#8A7B67]">Total</p>
                   <p className="mt-2 text-2xl font-semibold text-[#2D2D2D]">₦{order.total.toLocaleString()}</p>
                 </div>
+              </div>
+              <div className="mt-5 rounded-[1.5rem] border border-[#EFE5D8] bg-[#FCFAF6] p-4">
+                {order.status === 'cancelled' ? (
+                  <div className="space-y-2">
+                    <p className="text-xs uppercase tracking-[0.35em] text-[#8D544A]">Order status</p>
+                    <p className="text-sm leading-6 text-[#77433A]">This order has been cancelled. Contact support if you need help with a replacement or refund.</p>
+                  </div>
+                ) : (
+                  <>
+                    <p className="text-xs uppercase tracking-[0.35em] text-[#8A7B67]">Order progress</p>
+                    <div className="mt-4 grid gap-3 sm:grid-cols-4">
+                      {statusSteps.map((step, index) => {
+                        const currentIndex = getStatusIndex(order.status);
+                        const isActive = currentIndex >= index;
+
+                        return (
+                          <div key={step} className="flex items-center gap-3">
+                            <span
+                              className={`flex h-9 w-9 items-center justify-center rounded-full text-xs font-semibold uppercase ${
+                                isActive
+                                  ? 'bg-[#D6B98C] text-[#2D2D2D]'
+                                  : 'border border-[#E3D3BA] bg-white text-[#8A7B67]'
+                              }`}
+                            >
+                              {index + 1}
+                            </span>
+                            <span className={`text-sm capitalize ${isActive ? 'text-[#2D2D2D]' : 'text-[#8A7B67]'}`}>
+                              {step}
+                            </span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </>
+                )}
               </div>
             </article>
           ))

@@ -1,6 +1,24 @@
 import { getServerSession } from 'next-auth';
 import Link from 'next/link';
 import { authOptions } from '@/lib/nextauth';
+import getClient from '@/lib/mongodb';
+
+async function getProfileStats(email: string) {
+  const client = await getClient();
+  const db = client.db();
+  const [user, orderCount] = await Promise.all([
+    db.collection('users').findOne<{ createdAt?: Date | string; role?: string }>({ email }),
+    db.collection('orders').countDocuments({ customerEmail: email })
+  ]);
+
+  return {
+    createdAt: user?.createdAt
+      ? new Date(user.createdAt).toLocaleDateString()
+      : null,
+    role: user?.role ?? 'customer',
+    orderCount
+  };
+}
 
 function getFirstName(name?: string | null, email?: string | null) {
   if (name && name.trim()) {
@@ -33,6 +51,7 @@ export default async function ProfilePage() {
   }
 
   const firstName = getFirstName(session.user.name, session.user.email);
+  const stats = session.user.email ? await getProfileStats(session.user.email) : null;
 
   return (
     <div className="bg-[#F8F5EF]">
@@ -44,20 +63,45 @@ export default async function ProfilePage() {
         </div>
 
         <div className="mt-6 grid gap-5 md:grid-cols-2">
-        <section className="rounded-[1.75rem] border border-[#ECE1D2] bg-white p-7 shadow-[0_14px_38px_rgba(76,60,38,0.07)]">
-          <p className="text-xs uppercase tracking-[0.35em] text-[#8A7B67]">Name</p>
-          <p className="mt-3 text-2xl font-semibold text-[#2D2D2D]">{session.user.name ?? 'Not provided'}</p>
-        </section>
-        <section className="rounded-[1.75rem] border border-[#ECE1D2] bg-white p-7 shadow-[0_14px_38px_rgba(76,60,38,0.07)]">
-          <p className="text-xs uppercase tracking-[0.35em] text-[#8A7B67]">Email</p>
-          <p className="mt-3 text-2xl font-semibold text-[#2D2D2D]">{session.user.email ?? 'Not provided'}</p>
-        </section>
+          <section className="rounded-[1.75rem] border border-[#ECE1D2] bg-white p-7 shadow-[0_14px_38px_rgba(76,60,38,0.07)]">
+            <p className="text-xs uppercase tracking-[0.35em] text-[#8A7B67]">Name</p>
+            <p className="mt-3 text-2xl font-semibold text-[#2D2D2D]">{session.user.name ?? 'Not provided'}</p>
+          </section>
+          <section className="rounded-[1.75rem] border border-[#ECE1D2] bg-white p-7 shadow-[0_14px_38px_rgba(76,60,38,0.07)]">
+            <p className="text-xs uppercase tracking-[0.35em] text-[#8A7B67]">Email</p>
+            <p className="mt-3 text-2xl font-semibold text-[#2D2D2D]">{session.user.email ?? 'Not provided'}</p>
+          </section>
+          <section className="rounded-[1.75rem] border border-[#ECE1D2] bg-white p-7 shadow-[0_14px_38px_rgba(76,60,38,0.07)]">
+            <p className="text-xs uppercase tracking-[0.35em] text-[#8A7B67]">Orders placed</p>
+            <p className="mt-3 text-2xl font-semibold text-[#2D2D2D]">{stats?.orderCount ?? 0}</p>
+          </section>
+          <section className="rounded-[1.75rem] border border-[#ECE1D2] bg-white p-7 shadow-[0_14px_38px_rgba(76,60,38,0.07)]">
+            <p className="text-xs uppercase tracking-[0.35em] text-[#8A7B67]">Member since</p>
+            <p className="mt-3 text-2xl font-semibold text-[#2D2D2D]">{stats?.createdAt ?? 'Recently joined'}</p>
+          </section>
         </div>
         <div className="mt-5 rounded-[1.75rem] border border-[#ECE1D2] bg-[#FCFAF6] p-7 shadow-[0_12px_32px_rgba(76,60,38,0.05)]">
           <p className="text-xs uppercase tracking-[0.35em] text-[#B99867]">Boutique Membership</p>
           <p className="mt-3 text-sm leading-7 text-[#61584D]">
             Your account keeps your orders, checkout details, and fragrance shopping experience connected across the boutique.
           </p>
+          <div className="mt-5 flex flex-wrap gap-3">
+            <Link
+              href="/orders"
+              className="inline-flex rounded-full bg-[#D6B98C] px-5 py-3 text-sm font-semibold text-[#2D2D2D] transition hover:bg-[#CDAE80]"
+            >
+              View orders
+            </Link>
+            <Link
+              href="/products"
+              className="inline-flex rounded-full border border-[#E3D3BA] bg-white px-5 py-3 text-sm font-semibold text-[#2D2D2D] transition hover:bg-[#F4EBDD]"
+            >
+              Browse perfumes
+            </Link>
+            <span className="inline-flex rounded-full border border-[#E3D3BA] bg-white px-5 py-3 text-sm font-semibold capitalize text-[#8A7B67]">
+              {stats?.role ?? 'customer'}
+            </span>
+          </div>
         </div>
       </div>
     </div>

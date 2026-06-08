@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import getClient from '@/lib/mongodb';
 import { requireAdmin } from '@/lib/auth';
+import { redirect } from 'next/navigation';
 
 async function getDashboardStats() {
   const client = await getClient();
@@ -16,16 +17,12 @@ async function getDashboardStats() {
 
 export default async function DashboardPage() {
   const session = await requireAdmin();
-  const stats = await getDashboardStats();
 
   if (!session) {
-    return (
-      <div className="mx-auto max-w-4xl px-6 py-20 text-center text-slate-700">
-        <h1 className="text-3xl font-semibold">Access denied</h1>
-        <p className="mt-4">Only admin accounts can view the dashboard.</p>
-      </div>
-    );
+    redirect('/products');
   }
+
+  const stats = await getDashboardStats();
 
   const firstName = session.user?.name?.trim()?.split(/\s+/)[0] ?? 'Collector';
 
