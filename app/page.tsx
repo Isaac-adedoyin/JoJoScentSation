@@ -5,6 +5,8 @@ import getClient from '@/lib/mongodb';
 import type { Product } from '@/lib/types';
 import type { ObjectId } from 'mongodb';
 
+export const dynamic = 'force-dynamic';
+
 async function getFeaturedProducts(): Promise<Product[]> {
   const client = await getClient();
   const db = client.db();
@@ -12,7 +14,7 @@ async function getFeaturedProducts(): Promise<Product[]> {
     .collection<Product & { _id: ObjectId }>('products')
     .find({ featured: true })
     .sort({ createdAt: -1 })
-    .limit(6)
+    .limit(8)
     .toArray();
 
   return products.map((product) => ({

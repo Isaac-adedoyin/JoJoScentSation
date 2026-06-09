@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/nextauth';
 import getClient from '@/lib/mongodb';
+import { revalidatePath } from 'next/cache';
 
 export async function GET() {
   if (!process.env.MONGODB_URI) {
@@ -56,9 +57,13 @@ export async function POST(request: Request) {
     category: String(category).trim(),
     imageUrl: String(imageUrl).trim(),
     cloudinaryPublicId,
-    featured: body.featured ?? false,
+    featured: body.featured ?? true,
     createdAt: new Date()
   });
+
+  revalidatePath('/');
+  revalidatePath('/products');
+  revalidatePath('/dashboard/products');
 
   return NextResponse.json({ success: true });
 }
@@ -95,6 +100,10 @@ export async function PATCH(request: Request) {
 
   await db.collection('products').updateOne({ _id: new ObjectId(id) }, { $set: updateDoc });
 
+  revalidatePath('/');
+  revalidatePath('/products');
+  revalidatePath('/dashboard/products');
+
   return NextResponse.json({ success: true });
 }
 
@@ -126,6 +135,10 @@ export async function DELETE(request: Request) {
   }
 
   await db.collection('products').deleteOne({ _id: new ObjectId(id) });
+
+  revalidatePath('/');
+  revalidatePath('/products');
+  revalidatePath('/dashboard/products');
 
   return NextResponse.json({ success: true });
 }

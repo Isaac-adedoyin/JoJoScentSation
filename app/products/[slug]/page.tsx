@@ -3,6 +3,8 @@ import getClient from '@/lib/mongodb';
 import ProductActions from './ProductActions';
 import type { ObjectId } from 'mongodb';
 
+export const dynamic = 'force-dynamic';
+
 async function getProductBySlug(slug: string): Promise<Product | null> {
   const client = await getClient();
   const db = client.db();

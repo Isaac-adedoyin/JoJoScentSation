@@ -52,6 +52,7 @@ export default function NewProductClient() {
       if (!data.success) throw new Error(data.error || 'Create failed');
       notify({ message: 'Product created', variant: 'success' });
       router.push('/dashboard/products');
+      router.refresh();
     } catch (err: any) {
       notify({ message: err.message || 'Something went wrong', variant: 'error' });
       setError(err.message || 'Something went wrong');

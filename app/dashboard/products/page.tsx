@@ -6,6 +6,8 @@ import { requireAdmin } from '@/lib/auth';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
 
+export const dynamic = 'force-dynamic';
+
 async function getProducts(): Promise<Product[]> {
   const client = await getClient();
   const db = client.db();

@@ -3,6 +3,8 @@ import ProductCard from '@/components/ProductCard';
 import type { Product } from '@/lib/types';
 import type { ObjectId } from 'mongodb';
 
+export const dynamic = 'force-dynamic';
+
 async function getProducts(): Promise<Product[]> {
   const client = await getClient();
   const db = client.db();
