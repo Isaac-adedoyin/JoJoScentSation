@@ -31,9 +31,9 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="mx-auto max-w-lg px-6 py-16">
-      <div className="rounded-[2rem] border border-[#E8DDCB] bg-white p-10 shadow-[0_18px_45px_rgba(76,60,38,0.08)]">
-        <h1 className="text-3xl font-semibold text-[#2D2D2D]">Create a customer account</h1>
+    <div className="mx-auto max-w-lg px-4 py-12 sm:px-6 sm:py-16">
+      <div className="rounded-[2rem] border border-[#E8DDCB] bg-white p-6 shadow-[0_18px_45px_rgba(76,60,38,0.08)] sm:p-10">
+        <h1 className="text-2xl font-semibold text-[#2D2D2D] sm:text-3xl">Create a customer account</h1>
         <p className="mt-3 text-[#61584D]">Register to save orders and access the shop dashboard.</p>
         <form onSubmit={handleSubmit} className="mt-8 space-y-6">
           <div>

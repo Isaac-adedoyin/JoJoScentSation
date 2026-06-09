@@ -52,8 +52,8 @@ export default async function HomePage() {
         <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
           <div className="space-y-8">
             <div className="space-y-4">
-              <p className="text-sm uppercase tracking-[0.45em] text-[#B99867]">Luxury Perfume Boutique</p>
-              <h1 className="max-w-3xl text-5xl font-semibold uppercase tracking-[0.18em] text-[#2D2D2D] leading-tight sm:text-6xl">
+              <p className="text-xs uppercase tracking-[0.28em] text-[#B99867] sm:text-sm sm:tracking-[0.45em]">Luxury Perfume Boutique</p>
+              <h1 className="max-w-3xl text-3xl font-semibold uppercase tracking-[0.08em] text-[#2D2D2D] leading-tight sm:text-5xl sm:tracking-[0.18em] lg:text-6xl">
                 JOJOSCENTSATION
               </h1>
               <p className="max-w-2xl text-lg leading-8 text-[#61584D] sm:text-xl">
@@ -64,13 +64,13 @@ export default async function HomePage() {
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/products"
-                className="inline-flex items-center justify-center rounded-full bg-[#D6B98C] px-8 py-4 text-sm font-semibold uppercase tracking-[0.25em] text-[#2D2D2D] shadow-[0_16px_36px_rgba(76,60,38,0.12)] transition duration-300 hover:scale-[1.01] hover:bg-[#CDAE80]"
+                className="inline-flex items-center justify-center rounded-full bg-[#D6B98C] px-6 py-4 text-sm font-semibold uppercase tracking-[0.16em] text-[#2D2D2D] shadow-[0_16px_36px_rgba(76,60,38,0.12)] transition duration-300 hover:scale-[1.01] hover:bg-[#CDAE80] sm:px-8 sm:tracking-[0.25em]"
               >
                 Explore scents
               </Link>
               <Link
                 href="/#why"
-                className="inline-flex items-center justify-center rounded-full border border-[#E3D3BA] bg-[#FBF8F2] px-8 py-4 text-sm font-semibold uppercase tracking-[0.25em] text-[#2D2D2D] transition duration-300 hover:border-[#D6B98C] hover:bg-[#F4EBDD]"
+                className="inline-flex items-center justify-center rounded-full border border-[#E3D3BA] bg-[#FBF8F2] px-6 py-4 text-sm font-semibold uppercase tracking-[0.16em] text-[#2D2D2D] transition duration-300 hover:border-[#D6B98C] hover:bg-[#F4EBDD] sm:px-8 sm:tracking-[0.25em]"
               >
                 Discover more
               </Link>
@@ -93,12 +93,12 @@ export default async function HomePage() {
                 <img
                   src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1200&q=80"
                   alt="Futuristic perfume showcase"
-                  className="h-[520px] w-full object-cover transition duration-500 hover:scale-105"
+                  className="h-[320px] w-full object-cover transition duration-500 hover:scale-105 sm:h-[420px] lg:h-[520px]"
                 />
               </div>
-              <div className="absolute inset-x-6 bottom-6 rounded-[1.75rem] border border-[#E8DDCB] bg-[#FFFCF8]/95 p-6 backdrop-blur-xl">
+              <div className="absolute inset-x-4 bottom-4 rounded-[1.75rem] border border-[#E8DDCB] bg-[#FFFCF8]/95 p-4 backdrop-blur-xl sm:inset-x-6 sm:bottom-6 sm:p-6">
                 <p className="text-xs uppercase tracking-[0.35em] text-[#B99867]">Featured scent</p>
-                <h2 className="mt-2 text-3xl font-semibold text-[#2D2D2D]">Noir Nova</h2>
+                <h2 className="mt-2 text-2xl font-semibold text-[#2D2D2D] sm:text-3xl">Noir Nova</h2>
                 <p className="mt-3 max-w-lg text-sm leading-7 text-[#61584D]">
                   A luminous trail of violet, oud, and warm woods wrapped in a modern sculptural bottle.
                 </p>

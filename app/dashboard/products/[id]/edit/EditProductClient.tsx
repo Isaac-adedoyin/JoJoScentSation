@@ -97,13 +97,13 @@ export default function EditProductClient({ id }: { id: string }) {
 
   return (
     <div className="bg-[#F8F5EF]">
-      <div className="mx-auto max-w-4xl px-6 py-8">
-        <div className="rounded-[2rem] border border-[#E8DDCB] bg-white px-7 py-8 shadow-[0_18px_45px_rgba(76,60,38,0.08)]">
+      <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6">
+        <div className="rounded-[2rem] border border-[#E8DDCB] bg-white px-5 py-6 shadow-[0_18px_45px_rgba(76,60,38,0.08)] sm:px-7 sm:py-8">
           <p className="text-xs uppercase tracking-[0.4em] text-[#D6B98C]">Dashboard</p>
-          <h1 className="mt-3 text-3xl font-semibold tracking-[-0.03em] text-[#2D2D2D]">Edit product</h1>
+          <h1 className="mt-3 text-2xl font-semibold tracking-[-0.03em] text-[#2D2D2D] sm:text-3xl">Edit product</h1>
           <p className="mt-3 text-sm leading-7 text-[#61584D]">Refine the listing details while keeping the boutique catalog tidy and consistent.</p>
         </div>
-        <form onSubmit={handleSave} className="mt-6 space-y-4 rounded-[1.75rem] border border-[#ECE1D2] bg-white p-7 shadow-[0_14px_38px_rgba(76,60,38,0.07)]">
+        <form onSubmit={handleSave} className="mt-6 space-y-4 rounded-[1.75rem] border border-[#ECE1D2] bg-white p-5 shadow-[0_14px_38px_rgba(76,60,38,0.07)] sm:p-7">
         <div>
           <label className="block text-sm font-medium text-[#2D2D2D]">Name</label>
           <input required value={name} onChange={(e) => setName(e.target.value)} className="mt-2 w-full rounded-2xl border border-[#E3D3BA] bg-[#FFFCF8] px-4 py-3 text-[#2D2D2D] outline-none transition focus:border-[#D6B98C]" />

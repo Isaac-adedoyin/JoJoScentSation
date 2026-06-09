@@ -22,11 +22,11 @@ export default function NewsletterSignup() {
   };
 
   return (
-    <section className="rounded-[2rem] border border-[#E8DDCB] bg-white p-8 shadow-[0_18px_45px_rgba(76,60,38,0.08)]">
+    <section className="rounded-[2rem] border border-[#E8DDCB] bg-white p-5 shadow-[0_18px_45px_rgba(76,60,38,0.08)] sm:p-8">
       <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
         <div>
-          <p className="text-sm uppercase tracking-[0.35em] text-[#B99867]">Join our list</p>
-          <h3 className="mt-3 text-3xl font-semibold text-[#2D2D2D] sm:text-4xl">Receive new fragrance drops, offers and styling notes.</h3>
+          <p className="text-xs uppercase tracking-[0.28em] text-[#B99867] sm:text-sm sm:tracking-[0.35em]">Join our list</p>
+          <h3 className="mt-3 text-2xl font-semibold text-[#2D2D2D] sm:text-3xl lg:text-4xl">Receive new fragrance drops, offers and styling notes.</h3>
         </div>
 
         <form onSubmit={handleSubmit} className="flex max-w-2xl flex-col gap-4 sm:flex-row">
@@ -43,7 +43,7 @@ export default function NewsletterSignup() {
           />
           <button
             type="submit"
-            className="rounded-full bg-[#D6B98C] px-6 py-4 text-sm font-semibold uppercase tracking-[0.3em] text-[#2D2D2D] transition hover:bg-[#CDAE80]"
+            className="rounded-full bg-[#D6B98C] px-6 py-4 text-sm font-semibold uppercase tracking-[0.18em] text-[#2D2D2D] transition hover:bg-[#CDAE80] sm:tracking-[0.3em]"
           >
             {submitted ? 'Subscribed' : 'Subscribe'}
           </button>

@@ -72,12 +72,12 @@ export default function CheckoutClient() {
   return (
     <>
       <Script src="https://js.paystack.co/v1/inline.js" strategy="afterInteractive" />
-      <div className="mx-auto max-w-4xl px-6 py-8">
-        <h1 className="text-4xl font-semibold text-[#2D2D2D]">Checkout</h1>
+      <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6">
+        <h1 className="text-3xl font-semibold text-[#2D2D2D] sm:text-4xl">Checkout</h1>
         <p className="mt-3 text-[#61584D]">Secure payment and order placement through Paystack.</p>
 
         <div className="mt-8 grid gap-8 lg:grid-cols-[0.9fr_0.5fr]">
-          <section className="rounded-[2rem] border border-[#E8DDCB] bg-white p-8 shadow-[0_18px_45px_rgba(76,60,38,0.08)]">
+          <section className="rounded-[2rem] border border-[#E8DDCB] bg-white p-5 shadow-[0_18px_45px_rgba(76,60,38,0.08)] sm:p-8">
             <div className="space-y-6">
               <div>
                 <label className="block text-sm font-semibold text-[#2D2D2D]">Name</label>
@@ -117,7 +117,7 @@ export default function CheckoutClient() {
             </div>
           </section>
 
-          <aside className="rounded-[2rem] border border-[#E8DDCB] bg-white p-8 shadow-[0_18px_45px_rgba(76,60,38,0.08)]">
+          <aside className="rounded-[2rem] border border-[#E8DDCB] bg-white p-5 shadow-[0_18px_45px_rgba(76,60,38,0.08)] sm:p-8">
             <div className="space-y-4">
               <h2 className="text-xl font-semibold text-[#2D2D2D]">Order summary</h2>
               <p className="text-[#61584D]">Items: {items.length}</p>

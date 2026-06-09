@@ -45,14 +45,14 @@ export default function OrderManagementClient({ orders }: { orders: Order[] }) {
   return (
     <div className="space-y-6">
       {orders.map((order) => (
-        <div key={order._id} className="rounded-[1.75rem] border border-[#ECE1D2] bg-white p-6 shadow-[0_14px_38px_rgba(76,60,38,0.07)]">
+        <div key={order._id} className="rounded-[1.75rem] border border-[#ECE1D2] bg-white p-5 shadow-[0_14px_38px_rgba(76,60,38,0.07)] sm:p-6">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div>
               <p className="text-xs uppercase tracking-[0.35em] text-[#B99867]">{order.status}</p>
               <h2 className="text-xl font-semibold text-[#2D2D2D]">{order.customerName}</h2>
               <p className="mt-2 text-sm text-[#61584D]">{order.customerEmail} • {new Date(order.createdAt).toLocaleDateString()}</p>
             </div>
-            <div className="space-y-2 text-right">
+            <div className="space-y-2 md:text-right">
               <p className="text-sm text-[#7A6F61]">Paid: {order.paid ? 'Yes' : 'No'}</p>
               <p className="text-lg font-semibold text-[#2D2D2D]">₦{order.total.toLocaleString()}</p>
             </div>
@@ -65,7 +65,7 @@ export default function OrderManagementClient({ orders }: { orders: Order[] }) {
             <select
               value={selectedStatuses[order._id]}
               onChange={(event) => handleStatusChange(order._id, event.target.value)}
-              className="rounded-full border border-[#E3D3BA] bg-[#FFFCF8] px-4 py-3 text-sm text-[#2D2D2D] outline-none transition focus:border-[#D6B98C]"
+              className="w-full rounded-full border border-[#E3D3BA] bg-[#FFFCF8] px-4 py-3 text-sm text-[#2D2D2D] outline-none transition focus:border-[#D6B98C] sm:w-auto"
             >
               <option value="pending">Pending</option>
               <option value="processing">Processing</option>
@@ -77,7 +77,7 @@ export default function OrderManagementClient({ orders }: { orders: Order[] }) {
               type="button"
               onClick={() => handleUpdate(order._id)}
               disabled={savingId === order._id}
-              className="inline-flex justify-center rounded-full bg-[#D6B98C] px-5 py-3 text-sm font-semibold text-[#2D2D2D] transition hover:bg-[#CDAE80] disabled:cursor-not-allowed disabled:bg-[#E5DACA] disabled:text-[#7E715E]"
+              className="inline-flex w-full justify-center rounded-full bg-[#D6B98C] px-5 py-3 text-sm font-semibold text-[#2D2D2D] transition hover:bg-[#CDAE80] disabled:cursor-not-allowed disabled:bg-[#E5DACA] disabled:text-[#7E715E] sm:w-auto"
             >
               {savingId === order._id ? 'Updating...' : 'Update status'}
             </button>

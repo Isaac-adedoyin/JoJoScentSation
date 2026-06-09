@@ -42,7 +42,7 @@ export default async function OrdersPage() {
   if (!session?.user?.email) {
     return (
       <div className="mx-auto max-w-4xl px-6 py-20 text-center">
-        <h1 className="text-4xl font-semibold text-slate-900">Your orders</h1>
+        <h1 className="text-3xl font-semibold text-slate-900 sm:text-4xl">Your orders</h1>
         <p className="mt-4 text-slate-600">Log in to view your recent purchases and delivery status.</p>
         <Link
           href="/login"
@@ -58,17 +58,17 @@ export default async function OrdersPage() {
 
   return (
     <div className="bg-[#F8F5EF]">
-      <div className="mx-auto max-w-6xl px-6 py-8">
-        <div className="rounded-[2rem] border border-[#E8DDCB] bg-white px-7 py-8 shadow-[0_18px_45px_rgba(76,60,38,0.08)]">
+      <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6">
+        <div className="rounded-[2rem] border border-[#E8DDCB] bg-white px-5 py-6 shadow-[0_18px_45px_rgba(76,60,38,0.08)] sm:px-7 sm:py-8">
           <p className="text-xs uppercase tracking-[0.4em] text-[#D6B98C]">Account Orders</p>
-          <h1 className="mt-3 text-4xl font-semibold tracking-[-0.03em] text-[#2D2D2D]">Your fragrance orders</h1>
+          <h1 className="mt-3 text-3xl font-semibold tracking-[-0.03em] text-[#2D2D2D] sm:text-4xl">Your fragrance orders</h1>
           <p className="mt-3 text-sm leading-7 text-[#61584D]">Track every purchase placed with {session.user.email} in a cleaner boutique-style summary.</p>
         </div>
 
         <div className="mt-6 space-y-4">
         {orders.length ? (
           orders.map((order) => (
-            <article key={order._id} className="rounded-[1.75rem] border border-[#ECE1D2] bg-white p-6 shadow-[0_14px_38px_rgba(76,60,38,0.07)]">
+            <article key={order._id} className="rounded-[1.75rem] border border-[#ECE1D2] bg-white p-5 shadow-[0_14px_38px_rgba(76,60,38,0.07)] sm:p-6">
               <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                 <div>
                   <p className="text-xs uppercase tracking-[0.35em] text-[#B99867]">{order.status}</p>
@@ -79,7 +79,7 @@ export default async function OrdersPage() {
                 </div>
                 <div className="text-left md:text-right">
                   <p className="text-xs uppercase tracking-[0.35em] text-[#8A7B67]">Total</p>
-                  <p className="mt-2 text-2xl font-semibold text-[#2D2D2D]">₦{order.total.toLocaleString()}</p>
+                  <p className="mt-2 text-xl font-semibold text-[#2D2D2D] sm:text-2xl">₦{order.total.toLocaleString()}</p>
                 </div>
               </div>
               <div className="mt-5 rounded-[1.5rem] border border-[#EFE5D8] bg-[#FCFAF6] p-4">
@@ -91,7 +91,7 @@ export default async function OrdersPage() {
                 ) : (
                   <>
                     <p className="text-xs uppercase tracking-[0.35em] text-[#8A7B67]">Order progress</p>
-                    <div className="mt-4 grid gap-3 sm:grid-cols-4">
+                    <div className="mt-4 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
                       {statusSteps.map((step, index) => {
                         const currentIndex = getStatusIndex(order.status);
                         const isActive = currentIndex >= index;

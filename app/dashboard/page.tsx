@@ -28,18 +28,18 @@ export default async function DashboardPage() {
 
   return (
     <div className="bg-[#F8F5EF]">
-      <div className="mx-auto max-w-7xl px-6 py-8">
-        <div className="rounded-[2rem] border border-[#E8DDCB] bg-white px-7 py-8 shadow-[0_18px_45px_rgba(76,60,38,0.08)] md:px-10">
+      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
+        <div className="rounded-[2rem] border border-[#E8DDCB] bg-white px-5 py-6 shadow-[0_18px_45px_rgba(76,60,38,0.08)] sm:px-7 sm:py-8 md:px-10">
           <p className="text-xs uppercase tracking-[0.4em] text-[#D6B98C]">JoJoScentSation Atelier</p>
           <div className="mt-4 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-3xl">
-              <h1 className="text-4xl font-semibold tracking-[-0.03em] text-[#2D2D2D]">Welcome back, {firstName}</h1>
+              <h1 className="text-3xl font-semibold tracking-[-0.03em] text-[#2D2D2D] sm:text-4xl">Welcome back, {firstName}</h1>
               <p className="mt-3 max-w-2xl text-sm leading-7 text-[#5B5449]">
                 Oversee your perfume boutique with a calmer, more luxurious control room for catalog updates,
                 customer demand, and order flow.
               </p>
             </div>
-            <div className="grid grid-cols-2 gap-3 sm:flex">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
               <Link
                 href="/dashboard/products"
                 className="inline-flex justify-center rounded-full bg-[#D6B98C] px-5 py-3 text-sm font-semibold text-[#2D2D2D] transition hover:bg-[#CDAE80]"
@@ -57,31 +57,31 @@ export default async function DashboardPage() {
         </div>
 
         <div className="mt-6 grid gap-5 lg:grid-cols-3">
-          <div className="rounded-[1.75rem] border border-[#ECE1D2] bg-white p-7 shadow-[0_14px_38px_rgba(76,60,38,0.07)]">
+          <div className="rounded-[1.75rem] border border-[#ECE1D2] bg-white p-5 shadow-[0_14px_38px_rgba(76,60,38,0.07)] sm:p-7">
             <p className="text-xs uppercase tracking-[0.35em] text-[#B99867]">Products</p>
-            <p className="mt-4 text-4xl font-semibold text-[#2D2D2D]">{stats.products}</p>
+            <p className="mt-4 text-3xl font-semibold text-[#2D2D2D] sm:text-4xl">{stats.products}</p>
             <p className="mt-3 text-sm leading-6 text-[#61584D]">Every scent currently available in your boutique lineup.</p>
             <Link href="/dashboard/products" className="mt-5 inline-flex rounded-full bg-[#2D2D2D] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#454545]">
               Inventory overview
             </Link>
           </div>
-          <div className="rounded-[1.75rem] border border-[#ECE1D2] bg-white p-7 shadow-[0_14px_38px_rgba(76,60,38,0.07)]">
+          <div className="rounded-[1.75rem] border border-[#ECE1D2] bg-white p-5 shadow-[0_14px_38px_rgba(76,60,38,0.07)] sm:p-7">
             <p className="text-xs uppercase tracking-[0.35em] text-[#B99867]">Orders</p>
-            <p className="mt-4 text-4xl font-semibold text-[#2D2D2D]">{stats.orders}</p>
+            <p className="mt-4 text-3xl font-semibold text-[#2D2D2D] sm:text-4xl">{stats.orders}</p>
             <p className="mt-3 text-sm leading-6 text-[#61584D]">Customer purchases that need tracking, updates, and delivery follow-through.</p>
             <Link href="/dashboard/orders" className="mt-5 inline-flex rounded-full bg-[#2D2D2D] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#454545]">
               Order activity
             </Link>
           </div>
-          <div className="rounded-[1.75rem] border border-[#ECE1D2] bg-white p-7 shadow-[0_14px_38px_rgba(76,60,38,0.07)]">
+          <div className="rounded-[1.75rem] border border-[#ECE1D2] bg-white p-5 shadow-[0_14px_38px_rgba(76,60,38,0.07)] sm:p-7">
             <p className="text-xs uppercase tracking-[0.35em] text-[#B99867]">Customers</p>
-            <p className="mt-4 text-4xl font-semibold text-[#2D2D2D]">{stats.users}</p>
+            <p className="mt-4 text-3xl font-semibold text-[#2D2D2D] sm:text-4xl">{stats.users}</p>
             <p className="mt-3 text-sm leading-6 text-[#61584D]">Registered clients who return for signature fragrances and boutique service.</p>
           </div>
         </div>
 
         <div className="mt-6 grid gap-5 lg:grid-cols-[1.2fr_0.8fr]">
-          <div className="rounded-[1.75rem] border border-[#ECE1D2] bg-white p-7 shadow-[0_14px_38px_rgba(76,60,38,0.07)]">
+          <div className="rounded-[1.75rem] border border-[#ECE1D2] bg-white p-5 shadow-[0_14px_38px_rgba(76,60,38,0.07)] sm:p-7">
             <p className="text-xs uppercase tracking-[0.35em] text-[#B99867]">Boutique Notes</p>
             <h2 className="mt-3 text-2xl font-semibold text-[#2D2D2D]">A premium workspace for fragrance operations</h2>
             <p className="mt-3 text-sm leading-7 text-[#61584D]">
@@ -90,7 +90,7 @@ export default async function DashboardPage() {
             </p>
           </div>
 
-          <div className="rounded-[1.75rem] border border-[#E8DDCB] bg-[#FCFAF6] p-7 shadow-[0_14px_38px_rgba(76,60,38,0.06)]">
+          <div className="rounded-[1.75rem] border border-[#E8DDCB] bg-[#FCFAF6] p-5 shadow-[0_14px_38px_rgba(76,60,38,0.06)] sm:p-7">
             <p className="text-xs uppercase tracking-[0.35em] text-[#B99867]">Access</p>
             <h2 className="mt-3 text-2xl font-semibold text-[#2D2D2D]">Management access enabled</h2>
             <p className="mt-3 text-sm leading-7 text-[#61584D]">

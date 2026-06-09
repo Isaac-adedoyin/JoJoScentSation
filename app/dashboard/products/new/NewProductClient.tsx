@@ -64,13 +64,13 @@ export default function NewProductClient() {
 
   return (
     <div className="bg-[#F8F5EF]">
-      <div className="mx-auto max-w-4xl px-6 py-8">
-        <div className="rounded-[2rem] border border-[#E8DDCB] bg-white px-7 py-8 shadow-[0_18px_45px_rgba(76,60,38,0.08)]">
+      <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6">
+        <div className="rounded-[2rem] border border-[#E8DDCB] bg-white px-5 py-6 shadow-[0_18px_45px_rgba(76,60,38,0.08)] sm:px-7 sm:py-8">
           <p className="text-xs uppercase tracking-[0.4em] text-[#D6B98C]">Dashboard</p>
-          <h1 className="mt-3 text-3xl font-semibold tracking-[-0.03em] text-[#2D2D2D]">Create product</h1>
+          <h1 className="mt-3 text-2xl font-semibold tracking-[-0.03em] text-[#2D2D2D] sm:text-3xl">Create product</h1>
           <p className="mt-3 text-sm leading-7 text-[#61584D]">Add a new fragrance listing while keeping the boutique presentation polished and consistent.</p>
         </div>
-        <form onSubmit={handleSubmit} className="mt-6 rounded-[1.75rem] border border-[#ECE1D2] bg-white p-7 shadow-[0_14px_38px_rgba(76,60,38,0.07)] space-y-4">
+        <form onSubmit={handleSubmit} className="mt-6 space-y-4 rounded-[1.75rem] border border-[#ECE1D2] bg-white p-5 shadow-[0_14px_38px_rgba(76,60,38,0.07)] sm:p-7">
           <div>
             <label className="block text-sm font-medium text-[#2D2D2D]">Name</label>
             <input
