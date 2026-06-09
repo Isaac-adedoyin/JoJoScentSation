@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useToast } from '@/components/ToastContext';
 import AdminImagePicker from '@/components/AdminImagePicker';
+import { slugify } from '@/lib/slug';
 
 export default function NewProductClient() {
   const router = useRouter();
@@ -72,11 +73,23 @@ export default function NewProductClient() {
         <form onSubmit={handleSubmit} className="mt-6 rounded-[1.75rem] border border-[#ECE1D2] bg-white p-7 shadow-[0_14px_38px_rgba(76,60,38,0.07)] space-y-4">
           <div>
             <label className="block text-sm font-medium text-[#2D2D2D]">Name</label>
-            <input required value={name} onChange={(e) => setName(e.target.value)} className="mt-2 w-full rounded-2xl border border-[#E3D3BA] bg-[#FFFCF8] px-4 py-3 text-[#2D2D2D] outline-none transition focus:border-[#D6B98C]" />
+            <input
+              required
+              value={name}
+              onChange={(e) => {
+                const nextName = e.target.value;
+                const previousAutoSlug = slugify(name);
+                setName(nextName);
+                if (!slug.trim() || slug === previousAutoSlug) {
+                  setSlug(slugify(nextName));
+                }
+              }}
+              className="mt-2 w-full rounded-2xl border border-[#E3D3BA] bg-[#FFFCF8] px-4 py-3 text-[#2D2D2D] outline-none transition focus:border-[#D6B98C]"
+            />
           </div>
           <div>
             <label className="block text-sm font-medium text-[#2D2D2D]">Slug</label>
-            <input required value={slug} onChange={(e) => setSlug(e.target.value)} className="mt-2 w-full rounded-2xl border border-[#E3D3BA] bg-[#FFFCF8] px-4 py-3 text-[#2D2D2D] outline-none transition focus:border-[#D6B98C]" />
+            <input required value={slug} onChange={(e) => setSlug(slugify(e.target.value))} className="mt-2 w-full rounded-2xl border border-[#E3D3BA] bg-[#FFFCF8] px-4 py-3 text-[#2D2D2D] outline-none transition focus:border-[#D6B98C]" />
           </div>
           <div>
             <label className="block text-sm font-medium text-[#2D2D2D]">Description</label>

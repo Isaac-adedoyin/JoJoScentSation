@@ -4,12 +4,14 @@ import NewsletterSignup from '@/components/NewsletterSignup';
 import getClient from '@/lib/mongodb';
 import type { Product } from '@/lib/types';
 import type { ObjectId } from 'mongodb';
+import { normalizeProductSlugs } from '@/lib/product-slugs';
 
 export const dynamic = 'force-dynamic';
 
 async function getFeaturedProducts(): Promise<Product[]> {
   const client = await getClient();
   const db = client.db();
+  await normalizeProductSlugs(db);
   const products = await db
     .collection<Product & { _id: ObjectId }>('products')
     .find({ featured: true })

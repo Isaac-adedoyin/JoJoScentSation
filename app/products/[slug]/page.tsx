@@ -2,15 +2,19 @@ import type { Product } from '@/lib/types';
 import getClient from '@/lib/mongodb';
 import ProductActions from './ProductActions';
 import type { ObjectId } from 'mongodb';
+import { normalizeProductSlugs } from '@/lib/product-slugs';
+import { slugify } from '@/lib/slug';
 
 export const dynamic = 'force-dynamic';
 
 async function getProductBySlug(slug: string): Promise<Product | null> {
   const client = await getClient();
   const db = client.db();
+  await normalizeProductSlugs(db);
+  const normalizedSlug = slugify(slug);
   const product = await db
     .collection<Product & { _id: ObjectId }>('products')
-    .findOne({ slug });
+    .findOne({ slug: normalizedSlug });
   if (!product) return null;
 
   return {

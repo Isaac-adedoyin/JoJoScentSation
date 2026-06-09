@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/nextauth';
 import getClient from '@/lib/mongodb';
 import { revalidatePath } from 'next/cache';
+import { normalizeProductSlugs, resolveUniqueProductSlug } from '@/lib/product-slugs';
 
 export async function GET() {
   if (!process.env.MONGODB_URI) {
@@ -11,6 +12,7 @@ export async function GET() {
 
   const client = await getClient();
   const db = client.db();
+  await normalizeProductSlugs(db);
   const products = await db
     .collection('products')
     .find()
@@ -34,7 +36,6 @@ export async function POST(request: Request) {
 
   if (
     !String(name ?? '').trim() ||
-    !String(slug ?? '').trim() ||
     !String(description ?? '').trim() ||
     !String(category ?? '').trim() ||
     !String(imageUrl ?? '').trim() ||
@@ -48,9 +49,15 @@ export async function POST(request: Request) {
 
   const client = await getClient();
   const db = client.db();
+  await normalizeProductSlugs(db);
+  const normalizedSlug = await resolveUniqueProductSlug(db, String(slug ?? name ?? ''));
+  if (!normalizedSlug) {
+    return NextResponse.json({ success: false, error: 'Invalid product slug' }, { status: 400 });
+  }
+
   await db.collection('products').insertOne({
     name: String(name).trim(),
-    slug: String(slug).trim(),
+    slug: normalizedSlug,
     description: String(description).trim(),
     price: normalizedPrice,
     inventory: normalizedInventory,
@@ -81,10 +88,22 @@ export async function PATCH(request: Request) {
   const { ObjectId } = await import('mongodb');
   const client = await getClient();
   const db = client.db();
+  await normalizeProductSlugs(db);
 
   const updateDoc: any = { ...updates };
   // prevent updating _id
   delete updateDoc._id;
+  if ('slug' in updateDoc || 'name' in updateDoc) {
+    const normalizedSlug = await resolveUniqueProductSlug(
+      db,
+      String(updateDoc.slug ?? updateDoc.name ?? ''),
+      new ObjectId(id)
+    );
+    if (!normalizedSlug) {
+      return NextResponse.json({ success: false, error: 'Invalid product slug' }, { status: 400 });
+    }
+    updateDoc.slug = normalizedSlug;
+  }
 
   // if replacing Cloudinary image, optionally remove previous image
   if (updateDoc.cloudinaryPublicId && updateDoc.prevCloudinaryPublicId) {

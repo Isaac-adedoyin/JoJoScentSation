@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useToast } from '@/components/ToastContext';
 import AdminImagePicker from '@/components/AdminImagePicker';
+import { slugify } from '@/lib/slug';
 
 export default function EditProductClient({ id }: { id: string }) {
   const router = useRouter();
@@ -109,7 +110,7 @@ export default function EditProductClient({ id }: { id: string }) {
         </div>
         <div>
           <label className="block text-sm font-medium text-[#2D2D2D]">Slug</label>
-          <input required value={slug} onChange={(e) => setSlug(e.target.value)} className="mt-2 w-full rounded-2xl border border-[#E3D3BA] bg-[#FFFCF8] px-4 py-3 text-[#2D2D2D] outline-none transition focus:border-[#D6B98C]" />
+          <input required value={slug} onChange={(e) => setSlug(slugify(e.target.value))} className="mt-2 w-full rounded-2xl border border-[#E3D3BA] bg-[#FFFCF8] px-4 py-3 text-[#2D2D2D] outline-none transition focus:border-[#D6B98C]" />
         </div>
         <div>
           <label className="block text-sm font-medium text-[#2D2D2D]">Description</label>

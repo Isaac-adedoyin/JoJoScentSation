@@ -5,12 +5,14 @@ import ProductInventoryClient from './ProductInventoryClient';
 import { requireAdmin } from '@/lib/auth';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
+import { normalizeProductSlugs } from '@/lib/product-slugs';
 
 export const dynamic = 'force-dynamic';
 
 async function getProducts(): Promise<Product[]> {
   const client = await getClient();
   const db = client.db();
+  await normalizeProductSlugs(db);
   const products = await db
     .collection<Product & { _id: ObjectId }>('products')
     .find()
