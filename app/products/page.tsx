@@ -29,18 +29,18 @@ export default async function ProductsPage() {
 
   return (
     <div className="bg-[#F8F5EF]">
-      <div className="mx-auto max-w-7xl px-6 py-8">
-      <header className="mb-8 rounded-[2rem] border border-[#E8DDCB] bg-white px-7 py-8 shadow-[0_18px_45px_rgba(76,60,38,0.08)] flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
+      <header className="mb-8 flex flex-col gap-4 rounded-[2rem] border border-[#E8DDCB] bg-white px-5 py-6 shadow-[0_18px_45px_rgba(76,60,38,0.08)] sm:px-7 sm:py-8 md:flex-row md:items-end md:justify-between">
         <div>
-          <p className="text-sm uppercase tracking-[0.3em] text-[#B99867]">Gift-ready fragrance</p>
-          <h1 className="mt-2 text-4xl font-semibold text-[#2D2D2D]">Browse our perfume catalog</h1>
+          <p className="text-xs uppercase tracking-[0.24em] text-[#B99867] sm:text-sm sm:tracking-[0.3em]">Gift-ready fragrance</p>
+          <h1 className="mt-2 text-3xl font-semibold text-[#2D2D2D] sm:text-4xl">Browse our perfume catalog</h1>
         </div>
         <p className="max-w-xl text-sm leading-7 text-[#61584D]">
           Every scent is backed by product inventory management, easy checkout, and a clean admin dashboard.
         </p>
       </header>
 
-      <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+      <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
         {products.map((product) => (
           <ProductCard key={product._id} product={product} />
         ))}

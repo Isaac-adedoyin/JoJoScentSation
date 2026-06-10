@@ -80,17 +80,17 @@ export default function AdminImagePicker({
         </p>
         {error ? <p className="mt-2 text-sm text-[#8D544A]">{error}</p> : null}
         {activePreview ? (
-          <div className="mt-4 flex items-start gap-4">
+          <div className="mt-4 flex flex-col gap-4 sm:flex-row sm:items-start">
             <img
               src={activePreview}
               alt="Product preview"
               className="h-28 w-28 rounded-[1.25rem] object-cover shadow-[0_8px_24px_rgba(76,60,38,0.12)]"
             />
-            <div className="space-y-2 text-sm text-[#61584D]">
+            <div className="min-w-0 space-y-2 text-sm text-[#61584D]">
               <p className="font-medium text-[#2D2D2D]">{file ? 'New image selected' : 'Current product image'}</p>
               {file ? (
                 <>
-                  <p>{file.name}</p>
+                  <p className="break-words">{file.name}</p>
                   <p>{Math.round(file.size / 1024)} KB</p>
                 </>
               ) : (
@@ -100,7 +100,7 @@ export default function AdminImagePicker({
                 <button
                   type="button"
                   onClick={() => onFileChange(null)}
-                  className="inline-flex rounded-full border border-[#E3D3BA] bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-[#2D2D2D] transition hover:bg-[#F4EBDD]"
+                  className="inline-flex rounded-full border border-[#E3D3BA] bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#2D2D2D] transition hover:bg-[#F4EBDD] sm:tracking-[0.25em]"
                 >
                   Remove selection
                 </button>

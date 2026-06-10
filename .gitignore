@@ -2,7 +2,7 @@ node_modules
 .next
 out
 .DS_Store
-.env
+.env*
 .env.local
 .env.development
 .env.production

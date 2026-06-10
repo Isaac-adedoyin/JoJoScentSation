@@ -39,7 +39,7 @@ function ToastViewport({ toasts }: { toasts: Toast[] }) {
           key={toast.id}
           className={`pointer-events-auto w-full rounded-[1.75rem] border px-5 py-4 shadow-[0_24px_80px_rgba(0,0,0,0.45)] backdrop-blur-xl ${getVariantStyles(toast.variant)}`}
         >
-          <p className="text-[11px] font-semibold uppercase tracking-[0.35em] text-[#8A7B67]">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#8A7B67] sm:tracking-[0.35em]">
             {toast.variant === 'success' ? 'Success' : toast.variant === 'error' ? 'Error' : 'Notice'}
           </p>
           <p className="mt-2 text-sm leading-6">{toast.message}</p>

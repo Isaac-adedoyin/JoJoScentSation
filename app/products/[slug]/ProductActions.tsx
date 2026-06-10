@@ -44,7 +44,7 @@ export default function ProductActions({ product }: { product: Product }) {
   }
 
   return (
-    <div className="rounded-[2rem] border border-[#E8DDCB] bg-white p-8 shadow-[0_18px_45px_rgba(76,60,38,0.08)]">
+    <div className="rounded-[2rem] border border-[#E8DDCB] bg-white p-5 shadow-[0_18px_45px_rgba(76,60,38,0.08)] sm:p-8">
       <div className="space-y-4">
         <label className="flex flex-col gap-2 text-sm font-medium text-[#2D2D2D]">
           Quantity
