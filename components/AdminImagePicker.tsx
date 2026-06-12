@@ -66,28 +66,28 @@ export default function AdminImagePicker({
 
   return (
     <div className="space-y-3">
-      <label className="block text-sm font-medium text-[#2D2D2D]">{label}</label>
-      <div className="rounded-[1.5rem] border border-dashed border-[#DCC8A7] bg-[#FCFAF6] p-5">
+      <label className="block text-[10px] font-medium uppercase tracking-[0.2em] text-text-muted">{label}</label>
+      <div className="rounded-[1.5rem] border border-dashed border-border bg-background p-5">
         <input
           required={required}
           type="file"
           accept="image/*"
           onChange={handleFileChange}
-          className="block w-full text-sm text-[#61584D] file:mr-4 file:rounded-full file:border-0 file:bg-[#F4EBDD] file:px-4 file:py-2 file:font-semibold file:text-[#2D2D2D]"
+          className="block w-full text-sm text-text-muted file:mr-4 file:rounded-full file:border-0 file:bg-[#1E1E1E] file:px-4 file:py-2 file:text-[10px] file:uppercase file:tracking-[0.2em] file:font-semibold file:text-text-muted file:hover:bg-[#2A2A2A] file:transition"
         />
-        <p className="mt-3 text-xs leading-6 text-[#8A7B67]">
+        <p className="mt-3 text-xs leading-6 text-text-muted">
           {helperText ?? 'Use a sharp product image on a clean background for the best storefront presentation.'}
         </p>
-        {error ? <p className="mt-2 text-sm text-[#8D544A]">{error}</p> : null}
+        {error ? <p className="mt-2 text-sm text-[#D96B6B]">{error}</p> : null}
         {activePreview ? (
           <div className="mt-4 flex flex-col gap-4 sm:flex-row sm:items-start">
             <img
               src={activePreview}
               alt="Product preview"
-              className="h-28 w-28 rounded-[1.25rem] object-cover shadow-[0_8px_24px_rgba(76,60,38,0.12)]"
+              className="h-28 w-28 rounded-[1.25rem] object-cover shadow-sm border border-border-subtle"
             />
-            <div className="min-w-0 space-y-2 text-sm text-[#61584D]">
-              <p className="font-medium text-[#2D2D2D]">{file ? 'New image selected' : 'Current product image'}</p>
+            <div className="min-w-0 space-y-2 text-sm text-text-muted">
+              <p className="font-medium text-text-primary">{file ? 'New image selected' : 'Current product image'}</p>
               {file ? (
                 <>
                   <p className="break-words">{file.name}</p>
@@ -100,7 +100,7 @@ export default function AdminImagePicker({
                 <button
                   type="button"
                   onClick={() => onFileChange(null)}
-                  className="inline-flex rounded-full border border-[#E3D3BA] bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#2D2D2D] transition hover:bg-[#F4EBDD] sm:tracking-[0.25em]"
+                  className="inline-flex rounded-full border border-border bg-background px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-text-muted transition hover:border-gold/40 hover:text-gold sm:tracking-[0.25em]"
                 >
                   Remove selection
                 </button>

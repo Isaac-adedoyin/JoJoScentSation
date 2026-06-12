@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import type { CartItem } from '@/lib/types';
+import CartDrawer from './CartDrawer';
 
 interface CartContextValue {
   items: CartItem[];
@@ -11,12 +12,16 @@ interface CartContextValue {
   removeItem: (productId: string) => void;
   updateQuantity: (productId: string, quantity: number) => void;
   clearCart: () => void;
+  isCartOpen: boolean;
+  openCart: () => void;
+  closeCart: () => void;
 }
 
 const CartContext = createContext<CartContextValue | undefined>(undefined);
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   useEffect(() => {
     const stored = typeof window !== 'undefined' ? window.localStorage.getItem('jojo-cart') : null;
@@ -55,6 +60,9 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const clearCart = () => setItems([]);
 
+  const openCart = () => setIsCartOpen(true);
+  const closeCart = () => setIsCartOpen(false);
+
   const subtotal = useMemo(
     () => items.reduce((total, item) => total + item.price * item.quantity, 0),
     [items]
@@ -65,8 +73,9 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   );
 
   return (
-    <CartContext.Provider value={{ items, itemCount, subtotal, addItem, removeItem, updateQuantity, clearCart }}>
+    <CartContext.Provider value={{ items, itemCount, subtotal, isCartOpen, addItem, removeItem, updateQuantity, clearCart, openCart, closeCart }}>
       {children}
+      <CartDrawer />
     </CartContext.Provider>
   );
 }

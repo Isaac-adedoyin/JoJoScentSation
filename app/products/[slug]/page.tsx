@@ -1,11 +1,12 @@
 import type { Product } from '@/lib/types';
+import Image from 'next/image';
 import getClient from '@/lib/mongodb';
 import ProductActions from './ProductActions';
 import type { ObjectId } from 'mongodb';
 import { normalizeProductSlugs } from '@/lib/product-slugs';
 import { slugify } from '@/lib/slug';
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 60;
 
 async function getProductBySlug(slug: string): Promise<Product | null> {
   const client = await getClient();
@@ -29,29 +30,30 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
 
   if (!product) {
     return (
-      <div className="mx-auto max-w-7xl px-6 py-20 text-center text-slate-700">
-        <h1 className="text-2xl font-semibold sm:text-3xl">Product not found</h1>
-        <p className="mt-4">Check the catalog for our available perfume collections.</p>
+      <div className="mx-auto max-w-7xl px-6 py-20 text-center text-text-primary">
+        <h1 className="font-serif text-2xl sm:text-3xl">Product not found</h1>
+        <p className="mt-4 text-text-muted">Check the catalog for our available perfume collections.</p>
       </div>
     );
   }
 
   return (
-    <div className="bg-[#F8F5EF]">
+    <div className="bg-background text-text-primary">
     <div className="mx-auto max-w-7xl px-6 py-8">
       <div className="grid gap-10 lg:grid-cols-[0.9fr_0.7fr]">
-        <div className="overflow-hidden rounded-[2rem] border border-[#E8DDCB] bg-white shadow-[0_18px_45px_rgba(76,60,38,0.08)]">
-          <img src={product.imageUrl} alt={product.name} className="h-[320px] w-full object-cover sm:h-[460px] lg:h-full" />
+        <div className="relative overflow-hidden rounded-[2rem] border border-border-subtle bg-surface shadow-sm min-h-[320px] sm:min-h-[460px]">
+          <Image src={product.imageUrl} alt={product.name} fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#141414] via-transparent to-transparent opacity-60" />
         </div>
         <div className="space-y-6">
-          <div className="rounded-[2rem] border border-[#E8DDCB] bg-white p-6 shadow-[0_18px_45px_rgba(76,60,38,0.08)] sm:p-8">
-            <p className="text-xs uppercase tracking-[0.24em] text-[#B99867] sm:text-sm sm:tracking-[0.3em]">{product.category}</p>
-            <h1 className="mt-4 text-3xl font-semibold text-[#2D2D2D] sm:text-4xl">{product.name}</h1>
-            <p className="mt-5 text-lg leading-8 text-[#61584D]">{product.description}</p>
+          <div className="rounded-[2rem] border border-border-subtle bg-surface p-6 shadow-sm sm:p-8">
+            <p className="text-[10px] uppercase tracking-[0.4em] text-gold">{product.category}</p>
+            <h1 className="mt-4 font-serif text-3xl text-text-primary sm:text-4xl">{product.name}</h1>
+            <p className="mt-5 text-lg leading-8 text-text-muted">{product.description}</p>
             <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-4">
-              <span className="text-2xl font-semibold text-[#9A7643] sm:text-3xl">₦{Number(product.price ?? 0).toLocaleString()}</span>
-              <span className="rounded-full border border-[#EFE5D8] bg-[#FCFAF6] px-3 py-1 text-sm text-[#61584D]">
-                {product.inventory > 0 ? `${product.inventory} in stock` : 'Out of stock'}
+              <span className="text-2xl font-semibold text-gold sm:text-3xl">₦{Number(product.price ?? 0).toLocaleString()}</span>
+              <span className="rounded-full border border-border bg-background px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-text-muted">
+                {product.inventory > 0 ? 'Available' : 'Sold out'}
               </span>
             </div>
           </div>

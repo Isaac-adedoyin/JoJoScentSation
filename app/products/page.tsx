@@ -1,10 +1,10 @@
 import getClient from '@/lib/mongodb';
-import ProductCard from '@/components/ProductCard';
+import ProductsClient from './ProductsClient';
 import type { Product } from '@/lib/types';
 import type { ObjectId } from 'mongodb';
 import { normalizeProductSlugs } from '@/lib/product-slugs';
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 60;
 
 async function getProducts(): Promise<Product[]> {
   const client = await getClient();
@@ -15,36 +15,31 @@ async function getProducts(): Promise<Product[]> {
     .find()
     .sort({ createdAt: -1 })
     .toArray();
-  const normalizedProducts = products.map((product) => ({
+  return products.map((product) => ({
     ...product,
     _id: product._id.toString(),
     price: Number(product.price ?? 0),
     inventory: Number(product.inventory ?? 0)
   } as Product));
-  return normalizedProducts;
 }
 
 export default async function ProductsPage() {
   const products = await getProducts();
 
   return (
-    <div className="bg-[#F8F5EF]">
+    <div className="bg-background text-text-primary">
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
-      <header className="mb-8 flex flex-col gap-4 rounded-[2rem] border border-[#E8DDCB] bg-white px-5 py-6 shadow-[0_18px_45px_rgba(76,60,38,0.08)] sm:px-7 sm:py-8 md:flex-row md:items-end md:justify-between">
-        <div>
-          <p className="text-xs uppercase tracking-[0.24em] text-[#B99867] sm:text-sm sm:tracking-[0.3em]">Gift-ready fragrance</p>
-          <h1 className="mt-2 text-3xl font-semibold text-[#2D2D2D] sm:text-4xl">Browse our perfume catalog</h1>
-        </div>
-        <p className="max-w-xl text-sm leading-7 text-[#61584D]">
-          Every scent is backed by product inventory management, easy checkout, and a clean admin dashboard.
-        </p>
-      </header>
+        <header className="mb-8 flex flex-col gap-4 rounded-[2rem] border border-border-subtle bg-surface px-5 py-6 shadow-sm sm:px-7 sm:py-8 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p className="text-[10px] uppercase tracking-[0.4em] text-gold">Gift-ready fragrance</p>
+            <h1 className="mt-2 font-serif text-3xl text-text-primary sm:text-4xl">Browse our perfume catalog</h1>
+          </div>
+          <p className="max-w-xl text-sm leading-7 text-text-muted">
+            Explore our curated collection of signature fragrances.
+          </p>
+        </header>
 
-      <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
-        {products.map((product) => (
-          <ProductCard key={product._id} product={product} />
-        ))}
-      </div>
+        <ProductsClient products={products} />
       </div>
     </div>
   );

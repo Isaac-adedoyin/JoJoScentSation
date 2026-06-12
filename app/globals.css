@@ -4,23 +4,46 @@
 
 :root {
   color-scheme: light;
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background-color: #f8f5ef;
-  color: #2d2d2d;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-serif: Georgia, 'Times New Roman', serif;
+
+  --background: #F8F5EF;
+  --surface: #FFFFFF;
+  --border: #E8DDCB;
+  --border-subtle: #F0E8D9;
+  --text-primary: #2D2D2D;
+  --text-muted: #61584D;
+  --gold: #C9A85C;
+}
+
+.dark {
+  color-scheme: dark;
+  --background: #0A0A0A;
+  --surface: #141414;
+  --border: #2A2A2A;
+  --border-subtle: #1E1E1E;
+  --text-primary: #F5F0E8;
+  --text-muted: #7A7060;
+  --gold: #C9A85C;
 }
 
 html {
   scroll-behavior: smooth;
+  font-family: var(--font-sans);
 }
 
 body {
   margin: 0;
   overflow-x: hidden;
   min-height: 100vh;
-  background-image: radial-gradient(circle at top left, rgba(214, 185, 140, 0.18), transparent 24%),
-    radial-gradient(circle at 80% 18%, rgba(255, 255, 255, 0.72), transparent 18%),
-    linear-gradient(180deg, #fbf8f2 0%, #f8f5ef 100%);
-  color: #2d2d2d;
+  line-height: 1.75;
+  color: var(--text-primary);
+  background-color: var(--background);
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-serif);
+  letter-spacing: 0.01em;
 }
 
 * {
@@ -40,15 +63,48 @@ a {
 }
 
 ::selection {
-  background: rgba(214, 185, 140, 0.35);
-  color: #2d2d2d;
+  background: rgba(201, 168, 92, 0.3);
+  color: #F5F0E8;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-gold-rich);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
 @layer utilities {
+  /* Light glass card */
   .glass-panel {
     background: rgba(255, 255, 255, 0.88);
     backdrop-filter: blur(16px);
     border: 1px solid rgba(232, 221, 203, 0.95);
     box-shadow: 0 18px 45px rgba(76, 60, 38, 0.08);
+  }
+
+  /* Dark glass card */
+  .glass-panel-dark {
+    background: rgba(20, 20, 20, 0.92);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(201, 168, 92, 0.12);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Gold shimmer text */
+  .text-gold {
+    color: var(--color-gold-rich);
+  }
+
+  /* Hide scrollbar but keep scroll */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .font-serif {
+    font-family: var(--font-serif);
   }
 }

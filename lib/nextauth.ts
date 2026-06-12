@@ -31,6 +31,10 @@ export const authOptions: NextAuthOptions = {
         const isValid = await compare(credentials.password, user.passwordHash);
         if (!isValid) return null;
 
+        if (user.role !== 'admin' && !user.emailVerified) {
+          throw new Error('Please verify your email address to log in.');
+        }
+
         return {
           id: user._id.toString(),
           name: user.name,

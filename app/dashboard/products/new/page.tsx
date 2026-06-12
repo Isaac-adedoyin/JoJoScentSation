@@ -9,5 +9,9 @@ export default async function NewProductPage() {
     redirect('/products');
   }
 
-  return <NewProductClient />;
+  return (
+    <div className="space-y-6">
+      <NewProductClient />
+    </div>
+  );
 }

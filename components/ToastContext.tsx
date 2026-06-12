@@ -19,11 +19,11 @@ const ToastContext = createContext<ToastContextValue | undefined>(undefined);
 function getVariantStyles(variant: ToastVariant) {
   switch (variant) {
     case 'success':
-      return 'border-[#D6B98C] bg-[#FFFCF8]/95 text-[#2D2D2D]';
+      return 'border-[#D6B98C] bg-[#FFFCF8]/95 text-text-primary';
     case 'error':
       return 'border-[#D7B8B2] bg-[#FFF8F6]/95 text-[#77433A]';
     default:
-      return 'border-[#E8DDCB] bg-white/95 text-[#2D2D2D]';
+      return 'border-border bg-white/95 text-text-primary';
   }
 }
 
@@ -37,9 +37,9 @@ function ToastViewport({ toasts }: { toasts: Toast[] }) {
       {toasts.map((toast) => (
         <div
           key={toast.id}
-          className={`pointer-events-auto w-full rounded-[1.75rem] border px-5 py-4 shadow-[0_24px_80px_rgba(0,0,0,0.45)] backdrop-blur-xl ${getVariantStyles(toast.variant)}`}
+          className={`pointer-events-auto w-full rounded-[1.75rem] border px-5 py-4 shadow-sm backdrop-blur-xl ${getVariantStyles(toast.variant)}`}
         >
-          <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#8A7B67] sm:tracking-[0.35em]">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-text-muted sm:tracking-[0.35em]">
             {toast.variant === 'success' ? 'Success' : toast.variant === 'error' ? 'Error' : 'Notice'}
           </p>
           <p className="mt-2 text-sm leading-6">{toast.message}</p>

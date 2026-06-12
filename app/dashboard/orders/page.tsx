@@ -5,6 +5,8 @@ import OrderManagementClient from './OrderManagementClient';
 import { requireAdmin } from '@/lib/auth';
 import { redirect } from 'next/navigation';
 
+export const dynamic = 'force-dynamic';
+
 async function getOrders(): Promise<Order[]> {
   const client = await getClient();
   const db = client.db();
@@ -29,17 +31,19 @@ export default async function DashboardOrdersPage() {
   const orders = await getOrders();
 
   return (
-    <div className="bg-[#F8F5EF]">
-      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
-        <div className="rounded-[2rem] border border-[#E8DDCB] bg-white px-5 py-6 shadow-[0_18px_45px_rgba(76,60,38,0.08)] sm:px-7 sm:py-8">
-          <p className="text-xs uppercase tracking-[0.4em] text-[#D6B98C]">Dashboard</p>
-          <h1 className="mt-3 text-3xl font-semibold tracking-[-0.03em] text-[#2D2D2D] sm:text-4xl">Orders</h1>
-          <p className="mt-3 text-sm leading-7 text-[#61584D]">Review customer purchases and update delivery status in a softer premium workspace.</p>
+    <div className="space-y-6">
+      <div className="rounded-[2rem] border border-border-subtle bg-surface px-5 py-6 shadow-sm sm:px-8 sm:py-8">
+        <div>
+          <p className="text-[10px] uppercase tracking-[0.4em] text-gold">Dashboard</p>
+          <h1 className="mt-3 font-serif text-3xl tracking-[-0.03em] text-text-primary sm:text-4xl">Orders</h1>
+          <p className="mt-3 text-sm leading-7 text-text-muted">
+            Review customer purchases, manage fulfillment, and instantly update delivery status.
+          </p>
         </div>
+      </div>
 
-        <div className="mt-6">
-          <OrderManagementClient orders={orders} />
-        </div>
+      <div className="mt-6">
+        <OrderManagementClient orders={orders} />
       </div>
     </div>
   );

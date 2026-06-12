@@ -5,9 +5,30 @@ const config: Config = {
     './app/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}'
   ],
+  darkMode: 'class',
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['var(--font-sans)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        serif: ['var(--font-serif)', 'Georgia', 'serif']
+      },
+      animation: {
+        marquee: 'marquee 24s linear infinite'
+      },
+      keyframes: {
+        marquee: {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-50%)' }
+        }
+      },
       colors: {
+        background: 'var(--background)',
+        surface: 'var(--surface)',
+        border: 'var(--border)',
+        'border-subtle': 'var(--border-subtle)',
+        'text-primary': 'var(--text-primary)',
+        'text-muted': 'var(--text-muted)',
+        gold: 'var(--gold)',
         graphite: {
           50: '#f8fafc',
           100: '#f1f5f9',

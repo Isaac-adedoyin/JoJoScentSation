@@ -4,7 +4,6 @@ import type { ObjectId } from 'mongodb';
 import ProductInventoryClient from './ProductInventoryClient';
 import { requireAdmin } from '@/lib/auth';
 import { redirect } from 'next/navigation';
-import Link from 'next/link';
 import { normalizeProductSlugs } from '@/lib/product-slugs';
 
 export const dynamic = 'force-dynamic';
@@ -34,27 +33,19 @@ export default async function DashboardProductsPage() {
   const products = await getProducts();
 
   return (
-    <div className="bg-[#F8F5EF]">
-      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
-        <div className="rounded-[2rem] border border-[#E8DDCB] bg-white px-5 py-6 shadow-[0_18px_45px_rgba(76,60,38,0.08)] sm:px-7 sm:py-8">
-          <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
-            <div>
-              <p className="text-xs uppercase tracking-[0.4em] text-[#D6B98C]">Dashboard</p>
-              <h1 className="mt-3 text-3xl font-semibold tracking-[-0.03em] text-[#2D2D2D] sm:text-4xl">Product inventory</h1>
-              <p className="mt-3 text-sm leading-7 text-[#61584D]">Update stock and review current perfume inventory levels with a lighter boutique-led presentation.</p>
-            </div>
-            <Link
-              href="/dashboard/products/new"
-              className="inline-flex w-full justify-center rounded-full bg-[#D6B98C] px-5 py-3 text-sm font-semibold text-[#2D2D2D] transition hover:bg-[#CDAE80] sm:w-auto"
-            >
-              Add product
-            </Link>
-          </div>
+    <div className="space-y-6">
+      <div className="rounded-[2rem] border border-border-subtle bg-surface px-5 py-6 shadow-sm sm:px-8 sm:py-8">
+        <div>
+          <p className="text-[10px] uppercase tracking-[0.4em] text-gold">Dashboard</p>
+          <h1 className="mt-3 font-serif text-3xl tracking-[-0.03em] text-text-primary sm:text-4xl">Product Inventory</h1>
+          <p className="mt-3 text-sm leading-7 text-text-muted">
+            Update stock, review current perfume inventory levels, and manage your catalog with peak efficiency.
+          </p>
         </div>
+      </div>
 
-        <div className="mt-6">
-          <ProductInventoryClient products={products} />
-        </div>
+      <div className="mt-6">
+        <ProductInventoryClient products={products} />
       </div>
     </div>
   );

@@ -92,43 +92,43 @@ export default function EditProductClient({ id }: { id: string }) {
     }
   };
 
-  if (loading) return <div className="bg-[#F8F5EF] p-6 text-[#61584D]">Loading...</div>;
-  if (error) return <div className="bg-[#F8F5EF] p-6 text-[#8D544A]">{error}</div>;
+  if (loading) return <div className="bg-background p-6 text-text-muted">Loading...</div>;
+  if (error) return <div className="bg-background p-6 text-[#D96B6B]">{error}</div>;
 
   return (
-    <div className="bg-[#F8F5EF]">
+    <div className="bg-background text-text-primary">
       <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6">
-        <div className="rounded-[2rem] border border-[#E8DDCB] bg-white px-5 py-6 shadow-[0_18px_45px_rgba(76,60,38,0.08)] sm:px-7 sm:py-8">
-          <p className="text-xs uppercase tracking-[0.4em] text-[#D6B98C]">Dashboard</p>
-          <h1 className="mt-3 text-2xl font-semibold tracking-[-0.03em] text-[#2D2D2D] sm:text-3xl">Edit product</h1>
-          <p className="mt-3 text-sm leading-7 text-[#61584D]">Refine the listing details while keeping the boutique catalog tidy and consistent.</p>
+        <div className="rounded-[2rem] border border-border-subtle bg-surface px-5 py-6 shadow-sm sm:px-7 sm:py-8">
+          <p className="text-[10px] uppercase tracking-[0.4em] text-gold">Dashboard</p>
+          <h1 className="mt-3 font-serif text-3xl tracking-[-0.03em] text-text-primary sm:text-4xl">Edit product</h1>
+          <p className="mt-3 text-sm leading-7 text-text-muted">Refine the listing details while keeping the boutique catalog tidy and consistent.</p>
         </div>
-        <form onSubmit={handleSave} className="mt-6 space-y-4 rounded-[1.75rem] border border-[#ECE1D2] bg-white p-5 shadow-[0_14px_38px_rgba(76,60,38,0.07)] sm:p-7">
+        <form onSubmit={handleSave} className="mt-6 space-y-4 rounded-[1.75rem] border border-border-subtle bg-surface p-5 shadow-sm sm:p-7">
         <div>
-          <label className="block text-sm font-medium text-[#2D2D2D]">Name</label>
-          <input required value={name} onChange={(e) => setName(e.target.value)} className="mt-2 w-full rounded-2xl border border-[#E3D3BA] bg-[#FFFCF8] px-4 py-3 text-[#2D2D2D] outline-none transition focus:border-[#D6B98C]" />
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-[#2D2D2D]">Slug</label>
-          <input required value={slug} onChange={(e) => setSlug(slugify(e.target.value))} className="mt-2 w-full rounded-2xl border border-[#E3D3BA] bg-[#FFFCF8] px-4 py-3 text-[#2D2D2D] outline-none transition focus:border-[#D6B98C]" />
+          <label className="block text-[10px] font-medium uppercase tracking-[0.2em] text-text-muted">Name</label>
+          <input required value={name} onChange={(e) => setName(e.target.value)} className="mt-2 w-full rounded-full border border-border bg-surface px-5 py-3.5 text-sm text-text-primary outline-none transition-colors focus:border-gold/50 focus:ring-1 focus:ring-gold/50" />
         </div>
         <div>
-          <label className="block text-sm font-medium text-[#2D2D2D]">Description</label>
-          <textarea required value={description} onChange={(e) => setDescription(e.target.value)} className="mt-2 min-h-32 w-full rounded-2xl border border-[#E3D3BA] bg-[#FFFCF8] px-4 py-3 text-[#2D2D2D] outline-none transition focus:border-[#D6B98C]" />
+          <label className="block text-[10px] font-medium uppercase tracking-[0.2em] text-text-muted">Slug</label>
+          <input required value={slug} onChange={(e) => setSlug(slugify(e.target.value))} className="mt-2 w-full rounded-full border border-border bg-surface px-5 py-3.5 text-sm text-text-primary outline-none transition-colors focus:border-gold/50 focus:ring-1 focus:ring-gold/50" />
+        </div>
+        <div>
+          <label className="block text-[10px] font-medium uppercase tracking-[0.2em] text-text-muted">Description</label>
+          <textarea required value={description} onChange={(e) => setDescription(e.target.value)} className="mt-2 min-h-32 w-full rounded-3xl border border-border bg-surface px-5 py-4 text-sm text-text-primary outline-none transition-colors focus:border-gold/50 focus:ring-1 focus:ring-gold/50" />
         </div>
         <div className="grid gap-4 md:grid-cols-2">
           <div>
-            <label className="block text-sm font-medium text-[#2D2D2D]">Price</label>
-            <input required type="number" value={price} onChange={(e) => setPrice(Number(e.target.value))} className="mt-2 w-full rounded-2xl border border-[#E3D3BA] bg-[#FFFCF8] px-4 py-3 text-[#2D2D2D] outline-none transition focus:border-[#D6B98C]" />
+            <label className="block text-[10px] font-medium uppercase tracking-[0.2em] text-text-muted">Price</label>
+            <input required type="number" value={price} onChange={(e) => setPrice(Number(e.target.value))} className="mt-2 w-full rounded-full border border-border bg-surface px-5 py-3.5 text-sm text-text-primary outline-none transition-colors focus:border-gold/50 focus:ring-1 focus:ring-gold/50" />
           </div>
           <div>
-            <label className="block text-sm font-medium text-[#2D2D2D]">Inventory</label>
-            <input required type="number" value={inventory} onChange={(e) => setInventory(Number(e.target.value))} className="mt-2 w-full rounded-2xl border border-[#E3D3BA] bg-[#FFFCF8] px-4 py-3 text-[#2D2D2D] outline-none transition focus:border-[#D6B98C]" />
+            <label className="block text-[10px] font-medium uppercase tracking-[0.2em] text-text-muted">Inventory</label>
+            <input required type="number" value={inventory} onChange={(e) => setInventory(Number(e.target.value))} className="mt-2 w-full rounded-full border border-border bg-surface px-5 py-3.5 text-sm text-text-primary outline-none transition-colors focus:border-gold/50 focus:ring-1 focus:ring-gold/50" />
           </div>
         </div>
         <div>
-          <label className="block text-sm font-medium text-[#2D2D2D]">Category</label>
-          <input required value={category} onChange={(e) => setCategory(e.target.value)} className="mt-2 w-full rounded-2xl border border-[#E3D3BA] bg-[#FFFCF8] px-4 py-3 text-[#2D2D2D] outline-none transition focus:border-[#D6B98C]" />
+          <label className="block text-[10px] font-medium uppercase tracking-[0.2em] text-text-muted">Category</label>
+          <input required value={category} onChange={(e) => setCategory(e.target.value)} className="mt-2 w-full rounded-full border border-border bg-surface px-5 py-3.5 text-sm text-text-primary outline-none transition-colors focus:border-gold/50 focus:ring-1 focus:ring-gold/50" />
         </div>
         <div>
           <AdminImagePicker
@@ -140,11 +140,11 @@ export default function EditProductClient({ id }: { id: string }) {
           />
         </div>
         <div>
-          <button disabled={saving} className="inline-flex items-center rounded-full bg-[#D6B98C] px-5 py-3 text-sm font-semibold text-[#2D2D2D] transition hover:bg-[#CDAE80] disabled:bg-[#E5DACA]">
+          <button disabled={saving} className="inline-flex w-full sm:w-auto items-center justify-center rounded-full bg-gold px-6 py-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#0A0A0A] transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-gold/90 hover:shadow-sm disabled:translate-y-0 disabled:bg-[#1E1E1E] disabled:text-text-muted disabled:shadow-none">
             {saving ? 'Saving...' : 'Save changes'}
           </button>
         </div>
-        {error && <p className="text-sm text-[#8D544A]">{error}</p>}
+        {error && <p className="text-sm text-[#D96B6B]">{error}</p>}
       </form>
       </div>
     </div>
